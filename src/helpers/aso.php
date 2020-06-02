@@ -1,15 +1,12 @@
 <?php
 
-use App\AppConfig;
-use App\Aso;
-use App\Config;
+use haxibiao\config\AppConfig;
+use haxibiao\config\Aso;
+use haxibiao\config\Config;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 function small_logo()
 {
-    if (!class_exists("App\Aso")) {
-        return null;
-    }
 
     if (project_is_dtzq()) {
         return '/picture/logo.png';
@@ -26,9 +23,6 @@ function small_logo()
 //兼容网页
 function qrcode_url()
 {
-    if (!class_exists("App\Aso")) {
-        return null;
-    }
 
     if (project_is_dtzq()) {
         $apkUrl = "http://datizhuanqian.com/download"; //TODO: env?
@@ -51,9 +45,6 @@ function qrcode_url()
 //检查是否备案期间
 function isRecording()
 {
-    if (!class_exists("App\AppConfig")) {
-        return null;
-    }
 
     $config = AppConfig::where([
         'group' => 'record',
@@ -67,10 +58,6 @@ function isRecording()
 
 function adIsOpened()
 {
-
-    if (!class_exists("App\AppConfig")) {
-        return null;
-    }
 
     $os     = request()->header('os', 'android');
     $config = AppConfig::where([
@@ -87,19 +74,11 @@ function adIsOpened()
 function aso_value($group, $name)
 {
 
-    if (!class_exists("App\Aso")) {
-        return null;
-    }
-
     return Aso::getValue($group, $name);
 }
 
 function getDownloadUrl()
 {
-
-    if (!class_exists("App\Aso")) {
-        return null;
-    }
 
     $apkUrl = Aso::getValue('下载页', '安卓地址');
     if (is_null($apkUrl) || empty($apkUrl)) {
@@ -110,10 +89,6 @@ function getDownloadUrl()
 
 function douyinOpen()
 {
-
-    if (!class_exists("App\Config")) {
-        return null;
-    }
 
     $config = Config::where([
         'name' => 'douyin',

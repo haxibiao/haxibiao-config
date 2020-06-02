@@ -1,7 +1,6 @@
 # haxibiao/config
 
-> haxibiao/config 是哈希表内部通用函数和类
-> 欢迎大家提交代码或提出建议
+> haxibiao/config 是哈希表配置库（含功能配置，APP，广告开关，ASO，SEO等配置）
 
 ## 导语
 

@@ -21,7 +21,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = '注册 haxibiao/config Provider';
+    protected $description = '安装 haxibiao/config';
 
     /**
      * Execute the Console command.
@@ -30,7 +30,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->comment('Register Helper Service Provider...');
+        $this->comment('config app.php 添加 Service Provider...');
         $this->registerHelperServiceProvider();
     }
 
@@ -45,7 +45,7 @@ class InstallCommand extends Command
 
         file_put_contents(config_path('app.php'), str_replace(
             "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL,
-            "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL . "        haxibiao\helper\ConfigServiceProvider::class," . PHP_EOL,
+            "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL . "        haxibiao\helpers\ConfigServiceProvider::class," . PHP_EOL,
             file_get_contents(config_path('app.php'))
         ));
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace haxibiao\helpers;
+namespace haxibiao\config;
 
 use Illuminate\Support\ServiceProvider;
 
