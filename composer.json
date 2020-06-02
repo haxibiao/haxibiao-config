@@ -1,0 +1,32 @@
+{
+    "name": "haxibiao/config",
+    "description": "哈希表配置库",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ivan",
+            "email": "ivan@haxibiao.com"
+        }
+    ],
+    "require": {},
+    "repositories": {},
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "haxibiao\\config\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "haxibiao\\config\\ConfigServiceProvider"
+            ]
+        }
+    }
+}
