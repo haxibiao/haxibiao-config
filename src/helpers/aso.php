@@ -5,14 +5,12 @@ use haxibiao\config\Aso;
 use haxibiao\config\Config;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-function small_logo()
+function small_logo(): string
 {
-
     if (project_is_dtzq()) {
         return '/picture/logo.png';
     }
-
-    $logo = Aso::getValue('下载页', 'logo');
+    $logo = Aso::getValue('下载页', 'logo') ?? '';
     if (empty($logo)) {
         return '/logo/' . env('APP_DOMAIN') . '.small.png';
     } else {
@@ -31,12 +29,9 @@ function qrcode_url()
     }
     $logo   = small_logo();
     $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
-    if (str_contains($logo, env('COS_DOMAIN'))) {
-        $qrcode->merge($logo, .1, true);
-    } else {
-        if (file_exists(public_path($logo))) {
-            $qrcode->merge(public_path($logo), .1, true);
-        }
+    //要合并生成带网站logo的二维码，logo必须放本地
+    if (file_exists(public_path($logo))) {
+        $qrcode->merge(public_path($logo), .1, true);
     }
     $qrcode = $qrcode->generate($apkUrl);
     return base64_encode($qrcode);
