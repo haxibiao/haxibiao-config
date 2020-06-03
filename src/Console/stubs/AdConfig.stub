@@ -1,0 +1,10 @@
+<?php
+
+namespace App;
+
+use haxibiao\config\AdConfig as BaseAdConfig;
+
+class AdConfig extends BaseAdConfig
+{
+    //
+}

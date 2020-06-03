@@ -3,7 +3,6 @@
 namespace haxibiao\config;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Illuminate\Support\Str;
 
 class InstallCommand extends Command
@@ -30,28 +29,15 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->comment('config app.php 添加 Service Provider...');
-        $this->registerHelperServiceProvider();
+
+        $this->comment('复制 stubs ...');
+        copy($this->resolveStubPath('/stubs/AdConfig.stub'), app_path('AdConfig.php'));
+        copy($this->resolveStubPath('/stubs/AppConfig.stub'), app_path('AppConfig.php'));
+        copy($this->resolveStubPath('/stubs/Aso.stub'), app_path('Aso.php'));
+        copy($this->resolveStubPath('/stubs/Config.stub'), app_path('Config.php'));
+        copy($this->resolveStubPath('/stubs/Seo.stub'), app_path('Seo.php'));
+        copy($this->resolveStubPath('/stubs/Version.stub'), app_path('Version.php'));
+
     }
 
-    /**
-     * Register the Helper service provider in the application configuration file.
-     *
-     * @return void
-     */
-    protected function registerHelperServiceProvider()
-    {
-        $namespace = Str::replaceLast('\\', '', $this->getAppNamespace());
-
-        file_put_contents(config_path('app.php'), str_replace(
-            "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL,
-            "{$namespace}\\Providers\EventServiceProvider::class," . PHP_EOL . "        haxibiao\helpers\ConfigServiceProvider::class," . PHP_EOL,
-            file_get_contents(config_path('app.php'))
-        ));
-    }
-
-    protected function getAppNamespace()
-    {
-        return Container::getInstance()->getNamespace();
-    }
 }

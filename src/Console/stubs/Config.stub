@@ -1,0 +1,10 @@
+<?php
+
+namespace App;
+
+use haxibiao\config\Config as BaseConfig;
+
+class Config extends BaseConfig
+{
+    //
+}
