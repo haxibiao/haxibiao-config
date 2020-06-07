@@ -23,17 +23,17 @@ function get_seo_tj()
  */
 function get_seo_title()
 {
-    return \App\Seo::getValue('TKD', 'title');
+    return haxibiao\config\Seo::getValue('TKD', 'title');
 }
 
 function get_seo_keywords()
 {
-    return \App\Seo::getValue('TKD', 'keywords');
+    return haxibiao\config\Seo::getValue('TKD', 'keywords');
 }
 
 function get_seo_description()
 {
-    return \App\Seo::getValue('TKD', 'description');
+    return haxibiao\config\Seo::getValue('TKD', 'description');
 }
 
 function get_seo_meta()
@@ -45,5 +45,5 @@ function get_seo_meta()
     //     $meta   = $config->seo_meta;
     // }
     // return $meta;
-    return \App\Seo::getValue('百度', 'meta');
+    return haxibiao\config\Seo::getValue('百度', 'meta');
 }
