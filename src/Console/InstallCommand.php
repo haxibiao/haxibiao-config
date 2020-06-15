@@ -40,4 +40,9 @@ class InstallCommand extends Command
 
     }
 
+    protected function resolveStubPath($stub)
+    {
+        return __DIR__ . $stub;
+    }
+
 }
