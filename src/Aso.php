@@ -17,10 +17,6 @@ class Aso extends Model
     public static function getValue($group, $name)
     {
         $item = Aso::whereGroup($group)->whereName($name)->first();
-        if (isset($item)&&str_contains($item->name,'图')){
-            $item->value=Storage::cloud()->url($item->value);
-        }
-        info($name);
         return $item ? $item->value : '';
     }
 
