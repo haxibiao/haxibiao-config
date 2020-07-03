@@ -2,7 +2,7 @@
 
 namespace App;
 
-use haxibiao\config\AdConfig as BaseAdConfig;
+use Haxibiao\Config\AdConfig as BaseAdConfig;
 
 class AdConfig extends BaseAdConfig
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace haxibiao\config;
+namespace Haxibiao\Config;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

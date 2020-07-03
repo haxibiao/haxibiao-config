@@ -2,7 +2,7 @@
 
 namespace App;
 
-use haxibiao\config\Seo as BaseSeo;
+use Haxibiao\Config\Seo as BaseSeo;
 
 class Seo extends BaseSeo
 {

@@ -1,6 +1,6 @@
 <?php
 
-use haxibiao\config\Seo;
+use Haxibiao\Config\Seo;
 
 function seo_value($group, $name)
 {
@@ -23,17 +23,17 @@ function get_seo_tj()
  */
 function get_seo_title()
 {
-    return haxibiao\config\Seo::getValue('TKD', 'title');
+    return Haxibiao\Config\Seo::getValue('TKD', 'title');
 }
 
 function get_seo_keywords()
 {
-    return haxibiao\config\Seo::getValue('TKD', 'keywords');
+    return Haxibiao\Config\Seo::getValue('TKD', 'keywords');
 }
 
 function get_seo_description()
 {
-    return haxibiao\config\Seo::getValue('TKD', 'description');
+    return Haxibiao\Config\Seo::getValue('TKD', 'description');
 }
 
 function get_seo_meta()
@@ -45,5 +45,5 @@ function get_seo_meta()
     //     $meta   = $config->seo_meta;
     // }
     // return $meta;
-    return haxibiao\config\Seo::getValue('百度', 'meta');
+    return Haxibiao\Config\Seo::getValue('百度', 'meta');
 }

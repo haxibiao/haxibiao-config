@@ -2,7 +2,7 @@
 
 namespace App;
 
-use haxibiao\config\AppConfig as BaseAppConfig;
+use Haxibiao\Config\AppConfig as BaseAppConfig;
 
 class AppConfig extends BaseAppConfig
 {

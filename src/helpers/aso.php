@@ -1,8 +1,8 @@
 <?php
 
-use haxibiao\config\AppConfig;
-use haxibiao\config\Aso;
-use haxibiao\config\Config;
+use Haxibiao\Config\AppConfig;
+use Haxibiao\Config\Aso;
+use Haxibiao\Config\Config;
 
 function adIsOpened()
 {

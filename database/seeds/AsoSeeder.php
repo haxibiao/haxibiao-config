@@ -1,6 +1,6 @@
 <?php
 
-use haxibiao\config\Aso;
+use Haxibiao\Config\Aso;
 use Illuminate\Database\Seeder;
 
 class AsoSeeder extends Seeder
