@@ -75,8 +75,8 @@ function isRecording()
 
 function small_logo()
 {
-    if (class_exists("App\\Aso", true)) {
-        $logo = \App\Aso::getValue('下载页', 'logo');
+    if (class_exists("Haxibiao\\Config\\Aso", true)) {
+        $logo = Aso::getValue('下载页', 'logo');
 
         if (empty($logo)) {
             return '/logo/' . env('APP_DOMAIN') . '.small.png';
@@ -88,17 +88,20 @@ function small_logo()
 
 function qrcode_url()
 {
-    if (class_exists("App\\Aso", true)) {
-        $apkUrl = \App\Aso::getValue('下载页', '安卓地址');
+    if (class_exists("Haxibiao\\Config\\Aso", true)) {
+        $apkUrl = Aso::getValue('下载页', '安卓地址');
         $logo   = small_logo();
         $qrcode = SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(250)->encoding('UTF-8');
-        if (str_contains($logo, env('COS_DOMAIN'))) {
-            $qrcode->merge($logo, .1, true);
-        } else {
-            if (file_exists(public_path($logo))) {
-                $qrcode->merge(public_path($logo), .1, true);
+        if(!empty(env('COS_DOMAIN'))) {
+            if (str_contains($logo, env('COS_DOMAIN'))) {
+                $qrcode->merge($logo, .1, true);
+            } else {
+                if (file_exists(public_path($logo))) {
+                    $qrcode->merge(public_path($logo), .1, true);
+                }
             }
         }
+        
 
         $qrcode = $qrcode->generate($apkUrl);
 
