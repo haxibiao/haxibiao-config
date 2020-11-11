@@ -2,6 +2,40 @@
 
 use Haxibiao\Config\Seo;
 
+function seo_small_logo()
+{
+    return url('/logo/' . get_domain() . '.small.png');
+}
+
+function seo_site_name()
+{
+    $sites_name_map = [
+        "jingdianmeiju.com"  => "经典美剧",
+        "jingdianriju.com"   => "经典日剧",
+        "jindianhanju.com"   => "经典韩剧",
+        "jingdiangangju.com" => "经典港剧",
+        "jingdianyueyu.com"  => "经典粤语",
+        "huaijiumeiju.com"   => "怀旧美剧",
+        "huaijiuriju.com"    => "怀旧日剧",
+        "huaijiuhanju.com"   => "怀旧韩剧",
+        "huaijiugangju.com"  => "怀旧港剧",
+        "huaijiuyueyu.com"   => "怀旧粤语",
+        "fengkuangmeiju.com" => "疯狂美剧",
+        "fengkuanghanju.com" => "疯狂韩剧",
+
+        "zaixianmeiju.com"   => "在线美剧",
+        "aishanghanju.com"   => "爱上韩剧",
+        "aishangriju.com"    => "爱上日剧",
+        "aishanggangju.com"  => "爱上港剧",
+        "aishangyueyu.com"   => "爱上粤语",
+    ];
+    if ($name = $sites_name_map[get_domain()] ?? null) {
+        return $name;
+    }
+
+    return '内涵电影';
+}
+
 function seo_value($group, $name)
 {
     return Seo::getValue($group, $name);
