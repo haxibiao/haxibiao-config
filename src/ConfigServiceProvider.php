@@ -3,6 +3,7 @@
 namespace Haxibiao\Config;
 
 use Illuminate\Support\ServiceProvider;
+use Haxibiao\Config\Console\InstallCommand;
 
 class ConfigServiceProvider extends ServiceProvider
 {
