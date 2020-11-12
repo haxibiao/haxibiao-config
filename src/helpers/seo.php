@@ -40,6 +40,8 @@ function seo_site_name()
         "aishangriju.com"     => "爱上日剧",
         "aishanggangju.com"   => "爱上港剧",
         "aishangyueyu.com"    => "爱上粤语",
+
+        "laoyueyu.com"        => "老粤语",
     ];
     if ($name = $sites_name_map[get_domain()] ?? null) {
         return $name;
