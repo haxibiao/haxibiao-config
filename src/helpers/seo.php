@@ -58,6 +58,8 @@ function neihan_sites_domains()
         "aishangriju.com"      => "爱上日剧",
         "aishanggangju.com"    => "爱上港剧",
         "aishangyueyu.com"     => "爱上粤语",
+
+        "laoyueyu.com"         => "老粤语",
     ];
 
 }
