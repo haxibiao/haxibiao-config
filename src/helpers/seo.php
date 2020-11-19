@@ -22,6 +22,7 @@ function seo_site_name()
  */
 function neihan_sites_domains()
 {
+
     return [
         "neihanxinwen.com"     => "内涵新闻",
         "neihanxiaoshipin.com" => "内涵小视频",
@@ -61,7 +62,56 @@ function neihan_sites_domains()
 
         "laoyueyu.com"         => "老粤语",
     ];
+}
+function neihan_ga_measure_id()
+{
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihanxinwen.com"     => "G-02NVWTLXQQ",
+            "neihanxiaoshipin.com" => "G-L9K2KE4FMN",
+            "neihanduanshipin.com" => "G-ZPBJTK4SWZ",
 
+            "jingdianmeiju.com"    => "G-24RS5FX84Z",
+            "jingdianriju.com"     => "G-VQ9ZZDZ71E",
+            "jindianhanju.com"     => "G-D9T3L30JHX",
+            "jingdiangangju.com"   => "G-WLFYB2J9DV",
+            "jingdianyueyu.com"    => "G-CW14RTZJD8",
+
+            "huaijiumeiju.com"     => "G-EHSQV96WDS",
+            "huaijiuriju.com"      => "G-H03WCVM8MM",
+            "huaijiuhanju.com"     => "G-SKF9JT2YHQ",
+            "huaijiugangju.com"    => "G-PND6NHRDGD",
+            "huaijiuyueyu.com"     => "G-NVEGSN3QDS",
+
+            "fengkuangmeiju.com"   => "G-CRK4B4W5R4",
+            "fengkuangriju.com"    => "G-RBMTDGYWJB",
+            "fengkuanghanju.com"   => "G-ZD5VS57QS0",
+            "fengkuanggangju.com"  => "G-K0PDPPNKPQ",
+
+            "zaixianmeiju.com"     => "G-0G65PG9RET",
+            "zaixianriju.com"      => "G-V0P1GMLNP7",
+            "zaixianhanju.com"     => "G-Y175YH6FQX",
+            "zaixiangangju.com"    => "G-Y9X8DRH6JP",
+
+            "neihandianying.com"   => "G-W72CHJT74V",
+            "neihanmeiju.com"      => "G-6F8W0505E1",
+            "neihanriju.com"       => "G-QRG8C7FJ6P",
+            "neihanhanju.com"      => "G-NYBSGC3Z53",
+            "neihangangju.com"     => "G-CC0CD82NYG",
+
+            "aishanghanju.com"     => "G-C3QPSPFRLY",
+            "aishangriju.com"      => "G-WKFL8YBP7S",
+            "aishanggangju.com"    => "G-F07SGXP0CV",
+            "aishangyueyu.com"     => "G-68LTE5T2LQ",
+
+            "laoyueyu.com"         => "G-NTLN63MYR6",
+        ];
+
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www'], '', $host);
+        // 默认内函电影的
+        return $sites[$host] ?? 'G-W72CHJT74V';
+    }
 }
 
 function seo_value($group, $name)
