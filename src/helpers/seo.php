@@ -114,6 +114,57 @@ function neihan_ga_measure_id()
     }
 }
 
+function neihan_tencent_app_id()
+{
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihanxinwen.com"     => "500734196",
+            "neihanxiaoshipin.com" => "500734197",
+            "neihanduanshipin.com" => "500734198",
+
+            "jingdianmeiju.com"    => "500734199",
+            "jingdianriju.com"     => "500734200",
+            "jindianhanju.com"     => "500734201",
+            "jingdiangangju.com"   => "500734202",
+            "jingdianyueyu.com"    => "500734203",
+
+            "huaijiumeiju.com"     => "500734204",
+            "huaijiuriju.com"      => "500734205",
+            "huaijiuhanju.com"     => "500734206",
+            "huaijiugangju.com"    => "500734207",
+            "huaijiuyueyu.com"     => "500734208",
+
+            "fengkuangmeiju.com"   => "500734209",
+            "fengkuangriju.com"    => "500734210",
+            "fengkuanghanju.com"   => "500734211",
+            "fengkuanggangju.com"  => "500734212",
+
+            "zaixianmeiju.com"     => "500733778",
+            "zaixianriju.com"      => "",
+            "zaixianhanju.com"     => "500733766",
+            "zaixiangangju.com"    => "",
+
+            "neihandianying.com"   => "500733779",
+            "neihanmeiju.com"      => "",
+            "neihanriju.com"       => "",
+            "neihanhanju.com"      => "",
+            "neihangangju.com"     => "",
+
+            "aishanghanju.com"     => "",
+            "aishangriju.com"      => "",
+            "aishanggangju.com"    => "",
+            "aishangyueyu.com"     => "",
+
+            "laoyueyu.com"         => "",
+        ];
+
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www'], '', $host);
+        // 默认内函电影的
+        return $sites[$host] ?? '500733779';
+    }
+}
+
 function seo_value($group, $name)
 {
     return Seo::getValue($group, $name);
