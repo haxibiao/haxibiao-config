@@ -17,6 +17,60 @@ function seo_site_name()
     return '内涵电影';
 }
 
+function matomo_site_id()
+{
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihanxinwen.com"     => "",
+            "neihanxiaoshipin.com" => "",
+            "neihanduanshipin.com" => "",
+
+            "diudie.com"           => "29",
+            "caohan.com"           => "30",
+
+            "jingdianmeiju.com"    => "2",
+            "jingdianriju.com"     => "3",
+            "jindianhanju.com"     => "4",
+            "jingdiangangju.com"   => "5",
+            "jingdianyueyu.com"    => "6",
+
+            "huaijiumeiju.com"     => "7",
+            "huaijiuriju.com"      => "8",
+            "huaijiuhanju.com"     => "9",
+            "huaijiugangju.com"    => "10",
+            "huaijiuyueyu.com"     => "11",
+
+            "fengkuangmeiju.com"   => "12",
+            "fengkuangriju.com"    => "14",
+            "fengkuanghanju.com"   => "13",
+            "fengkuanggangju.com"  => "15",
+
+            "zaixianmeiju.com"     => "16",
+            "zaixianriju.com"      => "18",
+            "zaixianhanju.com"     => "17",
+            "zaixiangangju.com"    => "19",
+
+            "neihandianying.com"   => "1",
+            "neihanmeiju.com"      => "24",
+            "neihanriju.com"       => "25",
+            "neihanhanju.com"      => "26",
+            "neihangangju.com"     => "27",
+
+            "aishanghanju.com"     => "20",
+            "aishangriju.com"      => "21",
+            "aishanggangju.com"    => "22",
+            "aishangyueyu.com"     => "23",
+
+            "laoyueyu.com"         => "28",
+        ];
+
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www'], '', $host);
+        // 默认内函电影的
+        return $sites[$host] ?? '1';
+    }
+}
+
 /**
  * 所有内涵矩阵站点域名
  */
