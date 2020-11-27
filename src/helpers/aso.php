@@ -3,6 +3,7 @@
 use Haxibiao\Config\AppConfig;
 use Haxibiao\Config\Aso;
 use Haxibiao\Config\Config;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 function adIsOpened()
 {
@@ -86,13 +87,42 @@ function small_logo()
     }
 }
 
+/**
+ * 去下载APP的qrcode图片地址(自动生成)
+ */
+function app_qrcode_url()
+{
+    $qrcode_path      = "/storage/qrcode." . get_domain() . ".jpg";
+    $qrcode_full_path = public_path($qrcode_path);
+    //缓存的二维码图片
+    if (file_exists($qrcode_full_path)) {
+        return url($qrcode_path);
+    }
+
+    //包含PC扫码场景，先打开app下载页
+    $appDownloadPageUrl = url('/app');
+    $small_logo_path    = small_logo();
+
+    //中心带上small logo
+    $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
+    if (file_exists($small_logo_path)) {
+        $qrcode->merge($small_logo_path, .1, true);
+    }
+
+    try {
+        @file_put_contents($qrcode_full_path, $qrcode->generate($appDownloadPageUrl));
+    } catch (Exception $ex) {}
+    return url($qrcode_path);
+
+}
+
 function qrcode_url()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
         $apkUrl = Aso::getValue('下载页', '安卓地址');
         $logo   = small_logo();
-        $qrcode = SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(250)->encoding('UTF-8');
-        if(!empty(env('COS_DOMAIN'))) {
+        $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
+        if (!empty(env('COS_DOMAIN'))) {
             if (str_contains($logo, env('COS_DOMAIN'))) {
                 $qrcode->merge($logo, .1, true);
             } else {
@@ -101,7 +131,6 @@ function qrcode_url()
                 }
             }
         }
-        
 
         $qrcode = $qrcode->generate($apkUrl);
 
