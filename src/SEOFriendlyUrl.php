@@ -17,7 +17,6 @@ class SEOFriendlyUrl implements SEOFriendlyUrlContract
     public function generate()
     {
         $domain = get_domain();
-        $domain = 'caohan.com';
         $frienlyUrls = Arr::get($this->config,$domain,false);
         if(!$frienlyUrls){
             return null;
