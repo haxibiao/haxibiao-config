@@ -1,6 +1,11 @@
 <?php
 
+use Haxibiao\Config\Facades\SEOFriendlyUrl;
 use Haxibiao\Config\Seo;
+
+function seo_friendly_urls(){
+    return SEOFriendlyUrl::generate();
+}
 
 function seo_small_logo()
 {

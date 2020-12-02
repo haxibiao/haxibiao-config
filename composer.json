@@ -26,7 +26,10 @@
     "laravel": {
       "providers": [
         "Haxibiao\\Config\\ConfigServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "SEOFriendlyUrl": "Haxibiao\\Config\\Facades\\SEOFriendlyUrl"
+      }
     }
   }
 }

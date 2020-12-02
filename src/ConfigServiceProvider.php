@@ -4,6 +4,7 @@ namespace Haxibiao\Config;
 
 use Illuminate\Support\ServiceProvider;
 use Haxibiao\Config\Console\InstallCommand;
+use Illuminate\Config\Repository as Config;
 
 class ConfigServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,11 @@ class ConfigServiceProvider extends ServiceProvider
             require_once $filename;
         }
 
+        $this->app->singleton('haxibiao-config.friendlyurl', function ($app) {
+            return new SEOFriendlyUrl(new Config($app['config']->get('seo.frienly_urls', [])));
+        });
+        $this->app->bind(Contracts\SEOFriendly::class, 'haxibiao-config.friendlyurl');
+
         // Register Commands
         $this->commands([
             InstallCommand::class,
@@ -32,6 +38,8 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        if (! $this->app->configurationIsCached()) {
+            $this->mergeConfigFrom(__DIR__.'/../config/seo.php', 'seo');
+        }
     }
 }
