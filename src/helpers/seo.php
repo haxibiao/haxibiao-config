@@ -3,7 +3,8 @@
 use Haxibiao\Config\Facades\SEOFriendlyUrl;
 use Haxibiao\Config\Seo;
 
-function seo_friendly_urls(){
+function seo_friendly_urls()
+{
     return SEOFriendlyUrl::generate();
 }
 
@@ -271,4 +272,9 @@ function get_seo_meta()
     // }
     // return $meta;
     return Haxibiao\Config\Seo::getValue('百度', 'meta');
+}
+
+function get_seo_js()
+{
+    return Haxibiao\Config\Seo::getValue('百度', 'js');
 }
