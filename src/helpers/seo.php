@@ -274,7 +274,12 @@ function get_seo_meta()
     return Haxibiao\Config\Seo::getValue('百度', 'meta');
 }
 
-function get_seo_js()
+function get_seo_js($seo_site_name, $group_name = "百度")
 {
-    return Haxibiao\Config\Seo::getValue('百度', 'js');
+    $js = Haxibiao\Config\Seo::query()
+        ->where('group', $group_name)
+        ->where('name', $seo_site_name . "_js")->first();
+    if ($js) {
+        return $js->value;
+    }
 }
