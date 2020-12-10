@@ -239,9 +239,14 @@ function seo_value($group, $name)
     return Seo::getValue($group, $name);
 }
 
-function get_seo_push()
+function get_seo_push($seo_site_name, $group_name = "百度")
 {
-    return Seo::getValue('百度', 'push');
+    $js = Haxibiao\Config\Seo::query()
+        ->where('group', $group_name)
+        ->where('name', $seo_site_name . "_push")->first();
+    if ($js) {
+        return $js->value;
+    }
 }
 
 function get_seo_tj()
