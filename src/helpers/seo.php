@@ -31,6 +31,7 @@ function matomo_site_id()
             "neihanxiaoshipin.com" => "",
             "neihanduanshipin.com" => "",
 
+            "xiamaoshipin.com"     => "32",
             "diudie.com"           => "29",
             "caohan.com"           => "30",
 
@@ -68,13 +69,15 @@ function matomo_site_id()
             "aishangyueyu.com"     => "23",
 
             "laoyueyu.com"         => "28",
+            'dianmoge.com'         => '31',
         ];
 
         $host = parse_url($url)['host'];
-        $host = str_replace(['l.', 'www'], '', $host);
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
         // 默认内函电影的
         return $sites[$host] ?? '1';
     }
+
 }
 
 /**
@@ -174,10 +177,12 @@ function neihan_ga_measure_id()
             "aishangyueyu.com"     => "G-68LTE5T2LQ",
 
             "laoyueyu.com"         => "G-NTLN63MYR6",
+            'dianmoge.com'         => 'G-92H6K7HTKT',
+            'xiamaoshipin.com'     => 'G-3KK2NYZYLF',
         ];
 
         $host = parse_url($url)['host'];
-        $host = str_replace(['l.', 'www'], '', $host);
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
         // 默认内函电影的
         return $sites[$host] ?? 'G-W72CHJT74V';
     }
@@ -187,26 +192,26 @@ function neihan_tencent_app_id()
 {
     if (request() && $url = request()->getUri()) {
         $sites = [
-            "neihanxinwen.com"     => "500734196",
-            "neihanxiaoshipin.com" => "500734197",
-            "neihanduanshipin.com" => "500734198",
+            "neihanxinwen.com"     => "",
+            "neihanxiaoshipin.com" => "",
+            "neihanduanshipin.com" => "",
 
-            "jingdianmeiju.com"    => "500734199",
-            "jingdianriju.com"     => "500734200",
-            "jindianhanju.com"     => "500734201",
-            "jingdiangangju.com"   => "500734202",
-            "jingdianyueyu.com"    => "500734203",
+            "jingdianmeiju.com"    => "",
+            "jingdianriju.com"     => "",
+            "jindianhanju.com"     => "",
+            "jingdiangangju.com"   => "",
+            "jingdianyueyu.com"    => "",
 
-            "huaijiumeiju.com"     => "500734204",
-            "huaijiuriju.com"      => "500734205",
-            "huaijiuhanju.com"     => "500734206",
-            "huaijiugangju.com"    => "500734207",
-            "huaijiuyueyu.com"     => "500734208",
+            "huaijiumeiju.com"     => "",
+            "huaijiuriju.com"      => "",
+            "huaijiuhanju.com"     => "",
+            "huaijiugangju.com"    => "",
+            "huaijiuyueyu.com"     => "",
 
-            "fengkuangmeiju.com"   => "500734209",
-            "fengkuangriju.com"    => "500734210",
-            "fengkuanghanju.com"   => "500734211",
-            "fengkuanggangju.com"  => "500734212",
+            "fengkuangmeiju.com"   => "",
+            "fengkuangriju.com"    => "",
+            "fengkuanghanju.com"   => "",
+            "fengkuanggangju.com"  => "",
 
             "zaixianmeiju.com"     => "500733778",
             "zaixianriju.com"      => "",
@@ -225,12 +230,203 @@ function neihan_tencent_app_id()
             "aishangyueyu.com"     => "",
 
             "laoyueyu.com"         => "",
+            'dianmoge.com'         => '500734959',
+            'xiamaoshipin.com'     => '500735048',
+
         ];
 
         $host = parse_url($url)['host'];
-        $host = str_replace(['l.', 'www'], '', $host);
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
         // 默认内函电影的
         return $sites[$host] ?? '500733779';
+    }
+}
+
+function siteName()
+{
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihanxinwen.com"     => "内涵新闻",
+            "neihanxiaoshipin.com" => "内涵小视频",
+            "neihanduanshipin.com" => "内涵短视频",
+
+            "jingdianmeiju.com"    => "经典美剧",
+            "jingdianriju.com"     => "经典日剧",
+            "jindianhanju.com"     => "经典韩剧",
+            "jingdiangangju.com"   => "经典港剧",
+            "jingdianyueyu.com"    => "经典粤语",
+
+            "huaijiumeiju.com"     => "怀旧美剧",
+            "huaijiuriju.com"      => "怀旧日剧",
+            "huaijiuhanju.com"     => "怀旧韩剧",
+            "huaijiugangju.com"    => "怀旧港剧",
+            "huaijiuyueyu.com"     => "怀旧粤语",
+
+            "fengkuangmeiju.com"   => "疯狂美剧",
+            "fengkuangriju.com"    => "疯狂日剧",
+            "fengkuanghanju.com"   => "疯狂韩剧",
+            "fengkuanggangju.com"  => "疯狂港剧",
+
+            "zaixianmeiju.com"     => "在线美剧",
+            "zaixianriju.com"      => "在线日剧",
+            "zaixianhanju.com"     => "在线韩剧",
+            "zaixiangangju.com"    => "在线港剧",
+
+            "neihandianying.com"   => "内涵电影",
+            "neihanmeiju.com"      => "内涵美剧",
+            "neihanriju.com"       => "内涵日剧",
+            "neihanhanju.com"      => "内涵韩剧",
+            "neihangangju.com"     => "内涵港剧",
+
+            "aishanghanju.com"     => "爱上韩剧",
+            "aishangriju.com"      => "爱上日剧",
+            "aishanggangju.com"    => "爱上港剧",
+            "aishangyueyu.com"     => "爱上粤语",
+
+            "laoyueyu.com"         => "老粤语",
+
+            "caohan.com"           => "曹汉视频",
+            "dianmoge.com"         => "点墨阁",
+            "xiamaoshipin.com"     => "瞎猫视频",
+
+            'cheliange.cn'         => '彻恋阁',
+            'renzaichazai.cn'      => '人在茶在',
+            'shengkangtang.cn'     => '盛康泰',
+            'xinfashun.cn'         => '心法书',
+            'xinyuezhong.cn'       => '新月中',
+            'jingshiyang.cn'       => '景士阳',
+            'jinlaikaisuo.cn'      => '进来开锁',
+            'shiyongceping.cn'     => '使用测评',
+            'hushentouzi.cn'       => '沪深投资',
+        ];
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
+        return $sites[$host] ?? '内涵电影';
+    }
+}
+
+function friend_links()
+{
+    $zaixianSites = [
+        [
+            'name' => '在线美剧',
+            'url'  => 'https://zaixianmeiju.com',
+        ],
+        [
+            'name' => '在线韩剧',
+            'url'  => 'https://zaixianhanju.com',
+        ],
+        [
+            'name' => '在线日剧',
+            'url'  => 'https://zaixianriju.com',
+        ],
+        [
+            'name' => '在线港剧',
+            'url'  => 'https://zaixiangangju.com',
+        ],
+    ];
+    $neihanjuzhen = [
+        [
+            'name' => '内涵电影',
+            'url'  => 'https://neihandianying.com',
+        ],
+        [
+            'name' => '在线美剧',
+            'url'  => 'https://zaixianmeiju.com',
+        ],
+        [
+            'name' => '在线韩剧',
+            'url'  => 'https://zaixianhanju.com',
+        ],
+        [
+            'name' => '在线日剧',
+            'url'  => 'https://zaixianriju.com',
+        ],
+        [
+            'name' => '在线港剧',
+            'url'  => 'https://zaixiangangju.com',
+        ],
+    ];
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihandianying.com" => $zaixianSites,
+            "dianmoge.com"       => $neihanjuzhen,
+            "xiamaoshipin.com"   => $neihanjuzhen,
+        ];
+
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
+        // 默认内函电影的
+        return $sites[$host] ?? $zaixianSites;
+    }
+
+}
+
+function sitemap()
+{
+    return [
+        'Google地图' => '/sitemap/google.xml',
+        '百度地图'     => '/sitemap/baidu.xml',
+        '搜狗地图'     => '/sitemap/sougou.xml',
+        '360地图'    => '/sitemap/360.xml',
+        '神马地图'     => '/sitemap/shenma.xml',
+    ];
+}
+
+// 百度统计id
+function baidu_id()
+{
+    if (request() && $url = request()->getUri()) {
+        $sites = [
+            "neihanxinwen.com"     => "",
+            "neihanxiaoshipin.com" => "",
+            "neihanduanshipin.com" => "",
+
+            "xiamaoshipin.com"     => "96467d054f941be696ddb37f213d246f",
+            "diudie.com"           => "29",
+            "caohan.com"           => "30",
+
+            "jingdianmeiju.com"    => "2",
+            "jingdianriju.com"     => "3",
+            "jindianhanju.com"     => "4",
+            "jingdiangangju.com"   => "5",
+            "jingdianyueyu.com"    => "6",
+
+            "huaijiumeiju.com"     => "7",
+            "huaijiuriju.com"      => "8",
+            "huaijiuhanju.com"     => "9",
+            "huaijiugangju.com"    => "10",
+            "huaijiuyueyu.com"     => "11",
+
+            "fengkuangmeiju.com"   => "12",
+            "fengkuangriju.com"    => "14",
+            "fengkuanghanju.com"   => "13",
+            "fengkuanggangju.com"  => "15",
+
+            "zaixianmeiju.com"     => "16",
+            "zaixianriju.com"      => "18",
+            "zaixianhanju.com"     => "17",
+            "zaixiangangju.com"    => "19",
+
+            "neihandianying.com"   => "6e97a3278bb1c87902e1db0ccaf413bd",
+            "neihanmeiju.com"      => "24",
+            "neihanriju.com"       => "25",
+            "neihanhanju.com"      => "26",
+            "neihangangju.com"     => "27",
+
+            "aishanghanju.com"     => "20",
+            "aishangriju.com"      => "21",
+            "aishanggangju.com"    => "22",
+            "aishangyueyu.com"     => "23",
+
+            "laoyueyu.com"         => "28",
+            'dianmoge.com'         => '3bd05fbfcaaf8dad90231ea3de958d76',
+        ];
+
+        $host = parse_url($url)['host'];
+        $host = str_replace(['l.', 'www.', 'cdn.'], '', $host);
+        // 默认内函电影的
+        return $sites[$host] ?? '1';
     }
 }
 
