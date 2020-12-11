@@ -179,6 +179,7 @@ function neihan_ga_measure_id()
             "laoyueyu.com"         => "G-NTLN63MYR6",
             'dianmoge.com'         => 'G-92H6K7HTKT',
             'xiamaoshipin.com'     => 'G-3KK2NYZYLF',
+            'cheliange.cn'         => 'G-H6DLJJWY2Y',
         ];
 
         $host = parse_url($url)['host'];
@@ -413,7 +414,6 @@ function baidu_id()
             "neihanriju.com"       => "25",
             "neihanhanju.com"      => "26",
             "neihangangju.com"     => "27",
-
             "aishanghanju.com"     => "20",
             "aishangriju.com"      => "21",
             "aishanggangju.com"    => "22",
