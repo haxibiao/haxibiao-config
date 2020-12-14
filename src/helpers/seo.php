@@ -132,6 +132,7 @@ function neihan_sites_domains()
         "pipipei.com"          => "皮皮陪",
         "tiantiandati.cn"      => "天天答题",
         "neihanyouxi.com"      => "内涵游戏",
+        "dongdaima.com"        => "懂代码",
 
     ];
 }
@@ -291,6 +292,7 @@ function siteName()
             "xiamaoshipin.com"     => "瞎猫视频",
 
             'cheliange.cn'         => '彻恋阁',
+            'dongdaima.com'        => '懂代码',
             'renzaichazai.cn'      => '人在茶在',
             'shengkangtang.cn'     => '盛康泰',
             'xinfashun.cn'         => '心法书',
