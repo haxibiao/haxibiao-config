@@ -1,6 +1,6 @@
 # haxibiao/config
 
-> haxibiao/config 是哈希表配置库（含功能配置，APP，广告开关，ASO，SEO等配置）
+> haxibiao/config 是配置管理库（含广告，APP功能开关，ASO，SEO，CMS等配置）
 
 ## 导语
 
