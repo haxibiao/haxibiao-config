@@ -476,7 +476,7 @@ function get_seo_description()
     return Haxibiao\Config\Seo::getValue('TKD', 'description');
 }
 
-function get_seo_meta()
+function get_seo_meta($group_name = "百度")
 {
     // $meta = '';
     // if (Storage::exists("seo_config")) {
@@ -485,7 +485,7 @@ function get_seo_meta()
     //     $meta   = $config->seo_meta;
     // }
     // return $meta;
-    return Haxibiao\Config\Seo::getValue('百度', 'meta');
+    return Haxibiao\Config\Seo::getValue($group_name, 'meta');
 }
 
 function get_seo_js($seo_site_name, $group_name = "百度")
