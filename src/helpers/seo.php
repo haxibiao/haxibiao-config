@@ -448,7 +448,7 @@ function get_seo_push($seo_site_name = null, $group_name = "百度")
             return $js->value;
         }
     } else {
-        Seo::getValue('百度', 'push');
+        Seo::getValue($group_name, 'push');
     }
 }
 
