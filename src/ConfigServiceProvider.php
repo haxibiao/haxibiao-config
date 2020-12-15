@@ -2,9 +2,10 @@
 
 namespace Haxibiao\Config;
 
-use Illuminate\Support\ServiceProvider;
+use Haxibiao\Config\Console\EnvRefresh;
 use Haxibiao\Config\Console\InstallCommand;
 use Illuminate\Config\Repository as Config;
+use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class ConfigServiceProvider extends ServiceProvider
         // Register Commands
         $this->commands([
             InstallCommand::class,
+            EnvRefresh::class,
         ]);
     }
 
@@ -38,8 +40,8 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! $this->app->configurationIsCached()) {
-            $this->mergeConfigFrom(__DIR__.'/../config/seo.php', 'seo');
+        if (!$this->app->configurationIsCached()) {
+            $this->mergeConfigFrom(__DIR__ . '/../config/seo.php', 'seo');
         }
     }
 }
