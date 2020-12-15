@@ -125,10 +125,14 @@ function qrcode_url()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
         $apkUrl = Aso::getValue('下载页', '安卓地址');
-        $logo   = small_logo();
+        if(array_key_exists(get_domain(),neihan_sites_domains())){
+            $logo    = seo_small_logo();
+        }else{
+            $logo   = small_logo();
+        }    
         $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
         if (!empty(env('COS_DOMAIN'))) {
-            if (str_contains($logo, env('COS_DOMAIN'))) {
+            if (accessOK($logo)) {
                 $qrcode->merge($logo, .1, true);
             } else {
                 if (file_exists(public_path($logo))) {
