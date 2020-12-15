@@ -11,7 +11,7 @@ class EnvRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'env:refresh {--db_host=} {--db_database=} {--env=}';
+    protected $signature = 'env:refresh {--db_host=localhost} {--db_port=3306} {--db_database=} {--env= : 环境，默认local,可选prod, develop, staging}';
 
     /**
      * The console command description.
@@ -55,6 +55,7 @@ class EnvRefresh extends Command
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
             'DB_HOST'          => 'localhost',
+            'DB_PORT'          => $this->option('db_port'),
             'DB_DATABASE'      => env('APP_NAME'),
         ]);
 
@@ -73,6 +74,7 @@ class EnvRefresh extends Command
             'FILESYSTEM_CLOUD' => 'public',
             'LOCAL_APP_URL'    => 'http://develop.' . env('APP_NAME') . '.com',
             'DB_HOST'          => $db_host,
+            'DB_PORT'          => $this->option('db_port'),
             'DB_DATABASE'      => $this->option('db_database'),
         ]);
     }
@@ -89,6 +91,7 @@ class EnvRefresh extends Command
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
             'DB_HOST'          => $db_host,
+            'DB_PORT'          => $this->option('db_port'),
             'DB_DATABASE'      => $this->option('db_database'),
         ]);
     }
@@ -104,6 +107,7 @@ class EnvRefresh extends Command
             'APP_ENV'          => 'prod',
             'APP_DEBUG'        => 'false',
             'DB_HOST'          => $db_host,
+            'DB_PORT'          => $this->option('db_port'),
             'FILESYSTEM_CLOUD' => 'cosv5',
             'DB_DATABASE'      => $this->option('db_database'),
         ]);
@@ -141,7 +145,7 @@ class EnvRefresh extends Command
                 }
             }
 
-            //cos
+            //cos id key
             $cos_changes = [];
             if (is_array($webconfig->coses)) {
                 foreach ($webconfig->coses as $cos) {
@@ -155,16 +159,18 @@ class EnvRefresh extends Command
                         ];
                     }
                 }
-                $this->info("updating env file with $db_host settings ...");
+                $this->info("updated env file cos env values ...");
             }
 
-            //mail sms ...
+            //mail sms vod ...
             $changes = array_merge($cos_changes, $db_changes, [
                 'MAIL_HOST'                    => $webconfig->mail_host,
                 'MAIL_USERNAME'                => $webconfig->mail_username,
                 'MAIL_PASSWORD'                => $webconfig->mail_password,
                 'QCLOUD_SMS_ACCESS_KEY_ID'     => $webconfig->qcloud_sms_key_id,
                 'QCLOUD_SMS_ACCESS_KEY_SECRET' => $webconfig->qcloud_sms_key_secret,
+                'VOD_SECRET_ID'                => $webconfig->vod_secret_id,
+                'VOD_SECRET_KEY'               => $webconfig->vod_secret_key,
             ]);
 
             $this->updateEnv($changes);
