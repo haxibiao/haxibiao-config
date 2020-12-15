@@ -101,7 +101,12 @@ function app_qrcode_url()
 
     //包含PC扫码场景，先打开app下载页
     $appDownloadPageUrl = url('/app');
-    $small_logo_path    = small_logo();
+    if(array_key_exists(get_domain(),neihan_sites_domains())){
+        $small_logo_path    = seo_small_logo();
+    }else{
+        $small_logo_path    = small_logo();
+    }
+
 
     //中心带上small logo
     $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
