@@ -4,6 +4,7 @@ namespace Haxibiao\Config;
 
 use Haxibiao\Config\Console\EnvRefresh;
 use Haxibiao\Config\Console\InstallCommand;
+use Haxibiao\Config\Console\SetEnv;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,7 @@ class ConfigServiceProvider extends ServiceProvider
         $this->commands([
             InstallCommand::class,
             EnvRefresh::class,
+            SetEnv::class,
         ]);
     }
 

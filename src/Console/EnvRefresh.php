@@ -3,7 +3,11 @@
 namespace Haxibiao\Config\Console;
 
 use Illuminate\Console\Command;
+use PHPUnit\Framework\Error\Deprecated;
 
+/**
+ * @deprecated 目前主要用更简洁的 set:env Haxibiao\Config\Console\SetEnv.php
+ */
 class EnvRefresh extends Command
 {
     /**
