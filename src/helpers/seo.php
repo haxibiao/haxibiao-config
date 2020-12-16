@@ -294,7 +294,7 @@ function siteName()
             'cheliange.cn'         => '彻恋阁',
             'dongdaima.com'        => '懂代码',
             'renzaichazai.cn'      => '人在茶在',
-            'shengkangtang.cn'     => '盛康泰',
+            'shengkangtang.cn'     => '盛康堂',
             'xinfashun.cn'         => '心法书',
             'xinyuezhong.cn'       => '新月中',
             'jingshiyang.cn'       => '景士阳',
