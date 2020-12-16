@@ -132,7 +132,7 @@ function qrcode_url()
         }    
         $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
         if (!empty(env('COS_DOMAIN'))) {
-            if (accessOK($logo)) {
+            if (@file_get_contents($logo)) {
                 $qrcode->merge($logo, .1, true);
             } else {
                 if (file_exists(public_path($logo))) {
