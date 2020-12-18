@@ -87,8 +87,8 @@ function neihan_sites_domains()
 {
 
     return [
-        "diudie.com"           => "丢碟电影图解社区",
-        "caohan.com"           => "曹汉电影短视频",
+        "diudie.com"           => "丢碟图解",
+        "caohan.com"           => "曹汉视频",
 
         "neihanxinwen.com"     => "内涵新闻",
         "neihanxiaoshipin.com" => "内涵小视频",
