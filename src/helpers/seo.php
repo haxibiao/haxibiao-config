@@ -77,7 +77,6 @@ function matomo_site_id()
         // 默认内函电影的
         return $sites[$host] ?? '1';
     }
-
 }
 
 /**
@@ -87,8 +86,8 @@ function neihan_sites_domains()
 {
 
     return [
-        "diudie.com"           => "丢碟图解",
-        "caohan.com"           => "曹汉视频",
+        "diudie.com"           => "丢碟电影图解社区",
+        "caohan.com"           => "曹汉电影短视频",
 
         "neihanxinwen.com"     => "内涵新闻",
         "neihanxiaoshipin.com" => "内涵小视频",
@@ -132,7 +131,6 @@ function neihan_sites_domains()
         "pipipei.com"          => "皮皮陪",
         "tiantiandati.cn"      => "天天答题",
         "neihanyouxi.com"      => "内涵游戏",
-        "dongdaima.com"        => "懂代码",
 
     ];
 }
@@ -292,9 +290,8 @@ function siteName()
             "xiamaoshipin.com"     => "瞎猫视频",
 
             'cheliange.cn'         => '彻恋阁',
-            'dongdaima.com'        => '懂代码',
             'renzaichazai.cn'      => '人在茶在',
-            'shengkangtang.cn'     => '盛康堂',
+            'shengkangtang.cn'     => '盛康泰',
             'xinfashun.cn'         => '心法书',
             'xinyuezhong.cn'       => '新月中',
             'jingshiyang.cn'       => '景士阳',
@@ -362,17 +359,24 @@ function friend_links()
         // 默认内函电影的
         return $sites[$host] ?? $zaixianSites;
     }
-
 }
 
 function sitemap()
 {
+    $urlInfo  = parse_url(request()->getUri());
+    $arr = explode(".", $urlInfo['host']);
+    if (count($arr) == 3) {
+        $host = $arr[1];
+    } else {
+        $host = $arr[0];
+    }
+    $path = "sitemap/" . $host;
     return [
-        'Google地图' => '/sitemap/google.xml',
-        '百度地图'     => '/sitemap/baidu.xml',
-        '搜狗地图'     => '/sitemap/sougou.xml',
-        '360地图'    => '/sitemap/360.xml',
-        '神马地图'     => '/sitemap/shenma.xml',
+        'Google地图' => "/{$path}/google.xml",
+        '百度地图'     => "/{$path}/baidu.xml",
+        '搜狗地图'     => "/{$path}/sougou.xml",
+        '360地图'    => "/{$path}/360.xml",
+        '神马地图'     => "/{$path}/shenma.xml",
     ];
 }
 
@@ -448,7 +452,7 @@ function get_seo_push($seo_site_name = null, $group_name = "百度")
             return $js->value;
         }
     } else {
-        Seo::getValue($group_name, 'push');
+        Seo::getValue('百度', 'push');
     }
 }
 
@@ -476,7 +480,7 @@ function get_seo_description()
     return Haxibiao\Config\Seo::getValue('TKD', 'description');
 }
 
-function get_seo_meta($group_name = "百度")
+function get_seo_meta()
 {
     // $meta = '';
     // if (Storage::exists("seo_config")) {
@@ -485,7 +489,7 @@ function get_seo_meta($group_name = "百度")
     //     $meta   = $config->seo_meta;
     // }
     // return $meta;
-    return Haxibiao\Config\Seo::getValue($group_name, 'meta');
+    return Haxibiao\Config\Seo::getValue('百度', 'meta');
 }
 
 function get_seo_js($seo_site_name, $group_name = "百度")
