@@ -5,18 +5,26 @@ namespace Haxibiao\Config\Nova;
 use App\Nova\Resource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 
-class AdConfig extends Resource
+class Config extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\AdConfig';
+    public static $model = \App\Config::class;
+    public static function label()
+    {
+        return "配置";
+    }
 
+    public static function singularLabel()
+    {
+        return "配置";
+    }
+    public static $group = '系统管理';
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -30,15 +38,9 @@ class AdConfig extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name', 'value',
     ];
 
-    public static $group = '系统管理';
-
-    public static function label()
-    {
-        return "广告";
-    }
     /**
      * Get the fields displayed by the resource.
      *
@@ -49,14 +51,8 @@ class AdConfig extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('键', 'name'),
-//            Text::make('值','value'),
-            Select::make('值', 'value')->options([
-                '头条' => '头条',
-                '腾讯' => '腾讯',
-                '百度' => '百度',
-                '混合' => '混合',
-            ])->displayUsingLabels(),
+            Text::make('配置名称', 'name'),
+            Text::make('配置值', 'value'),
         ];
     }
 
