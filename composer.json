@@ -9,8 +9,20 @@
       "email": "ivan@haxibiao.com"
     }
   ],
-  "require": {},
-  "repositories": {},
+  "require": {
+    "haxibiao/helpers": "*",
+    "laravel/nova": "*"
+  },
+  "repositories": {
+    "nova": {
+      "type": "vcs",
+      "url": "http://code.haxibiao.cn/web/nova.git"
+    },
+    "helpers": {
+      "type": "vcs",
+      "url": "http://code.haxibiao.cn/packages/haxibiao-helpers.git"
+    }
+  },
   "minimum-stability": "dev",
   "autoload": {
     "psr-0": {

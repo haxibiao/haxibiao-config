@@ -42,7 +42,7 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!$this->app->configurationIsCached()) {
+        if (!app()->configurationIsCached()) {
             $this->mergeConfigFrom(__DIR__ . '/../config/seo.php', 'seo');
         }
     }

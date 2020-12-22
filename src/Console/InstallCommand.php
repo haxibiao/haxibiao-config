@@ -29,20 +29,25 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-
         $this->comment('复制 stubs ...');
-        copy($this->resolveStubPath('/stubs/AdConfig.stub'), app_path('AdConfig.php'));
-        copy($this->resolveStubPath('/stubs/AppConfig.stub'), app_path('AppConfig.php'));
-        copy($this->resolveStubPath('/stubs/Aso.stub'), app_path('Aso.php'));
-        copy($this->resolveStubPath('/stubs/Config.stub'), app_path('Config.php'));
-        copy($this->resolveStubPath('/stubs/Seo.stub'), app_path('Seo.php'));
-        copy($this->resolveStubPath('/stubs/Version.stub'), app_path('Version.php'));
-
+        $this->copyStubs();
     }
 
-    protected function resolveStubPath($stub)
+    public function copyStubs()
     {
-        return __DIR__ . $stub;
-    }
+        //复制所有app stubs
+        foreach (glob(__DIR__ . '/stubs/*.stub') as $filepath) {
+            $filename = basename($filepath);
+            copy($filepath, app_path(str_replace(".stub", ".php", $filename)));
+        }
 
+        //复制所有nova stubs
+        if (!is_dir(app_path('Nova'))) {
+            mkdir(app_path('Nova'));
+        }
+        foreach (glob(__DIR__ . '/stubs/Nova/*.stub') as $filepath) {
+            $filename = basename($filepath);
+            copy($filepath, app_path('Nova/' . str_replace(".stub", ".php", $filename)));
+        }
+    }
 }
