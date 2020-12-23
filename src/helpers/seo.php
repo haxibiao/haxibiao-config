@@ -374,13 +374,7 @@ function getDomain()
 
 function sitemap()
 {
-    $urlInfo = parse_url(request()->getUri());
-    $arr     = explode(".", $urlInfo['host']);
-    if (count($arr) == 3) {
-        $host = $arr[1];
-    } else {
-        $host = $arr[0];
-    }
+    $host = getDomain();
     $path = "sitemap/" . $host;
     return [
         'Google地图' => "/{$path}/google.xml",
