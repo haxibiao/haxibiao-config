@@ -362,8 +362,8 @@ function friend_links()
 }
 function getDomain()
 {
-    $urlInfo  = parse_url(request()->getUri());
-    $arr = explode(".", $urlInfo['host']);
+    $urlInfo = parse_url(request()->getUri());
+    $arr     = explode(".", $urlInfo['host']);
     if (count($arr) == 3) {
         $host = $arr[1];
     } else {
@@ -431,6 +431,7 @@ function baidu_id()
             "aishangyueyu.com"     => "23",
 
             "laoyueyu.com"         => "28",
+            "cheliange.cn"         => "38dcbe82fe7f03235d6cde7a1c6b4c19",
             'dianmoge.com'         => '3bd05fbfcaaf8dad90231ea3de958d76',
         ];
 
