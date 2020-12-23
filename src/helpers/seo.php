@@ -86,8 +86,8 @@ function neihan_sites_domains()
 {
 
     return [
-        "diudie.com"           => "丢碟电影图解社区",
-        "caohan.com"           => "曹汉电影短视频",
+        "diudie.com"           => "丢碟图解",
+        "caohan.com"           => "曹汉视频",
 
         "neihanxinwen.com"     => "内涵新闻",
         "neihanxiaoshipin.com" => "内涵小视频",
@@ -363,8 +363,8 @@ function friend_links()
 
 function sitemap()
 {
-    $urlInfo  = parse_url(request()->getUri());
-    $arr = explode(".", $urlInfo['host']);
+    $urlInfo = parse_url(request()->getUri());
+    $arr     = explode(".", $urlInfo['host']);
     if (count($arr) == 3) {
         $host = $arr[1];
     } else {
