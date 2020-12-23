@@ -360,6 +360,17 @@ function friend_links()
         return $sites[$host] ?? $zaixianSites;
     }
 }
+function getDomain()
+{
+    $urlInfo  = parse_url(request()->getUri());
+    $arr = explode(".", $urlInfo['host']);
+    if (count($arr) == 3) {
+        $host = $arr[1];
+    } else {
+        $host = $arr[0];
+    }
+    return $host;
+}
 
 function sitemap()
 {
