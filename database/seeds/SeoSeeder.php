@@ -69,16 +69,17 @@ class SeoSeeder extends Seeder
         $item->value = '';
         $item->save();
 
-        //百度
+        //站长
         $item = Seo::firstOrCreate([
-            'group' => '百度',
+            'group' => '站长',
             'name'  => 'meta',
         ]);
         $item->value = '';
         $item->save();
+        //资源
         $item = Seo::firstOrCreate([
-            'group' => '百度',
-            'name'  => 'push',
+            'group' => '资源',
+            'name'  => 'token',
         ]);
         $item->value = '';
         $item->save();

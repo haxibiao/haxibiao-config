@@ -447,21 +447,9 @@ function seo_value($group, $name)
     return Seo::getValue($group, $name);
 }
 
-function get_seo_push($seo_site_name = null, $group_name = "百度")
-{
-    if ($seo_site_name) {
-
-        $js = Haxibiao\Config\Seo::query()
-            ->where('group', $group_name)
-            ->where('name', $seo_site_name . "_push")->first();
-        if ($js) {
-            return $js->value;
-        }
-    } else {
-        Seo::getValue('百度', 'push');
-    }
-}
-
+/**
+ * @deprecated 统计合并到 cms_seo_js 里即可
+ */
 function get_seo_tj()
 {
     return Seo::getValue('统计', 'matomo');
@@ -488,22 +476,5 @@ function get_seo_description()
 
 function get_seo_meta()
 {
-    // $meta = '';
-    // if (Storage::exists("seo_config")) {
-    //     $json   = Storage::get('seo_config');
-    //     $config = json_decode($json);
-    //     $meta   = $config->seo_meta;
-    // }
-    // return $meta;
-    return Haxibiao\Config\Seo::getValue('百度', 'meta');
-}
-
-function get_seo_js($seo_site_name, $group_name = "百度")
-{
-    $js = Haxibiao\Config\Seo::query()
-        ->where('group', $group_name)
-        ->where('name', $seo_site_name . "_js")->first();
-    if ($js) {
-        return $js->value;
-    }
+    return Haxibiao\Config\Seo::getValue('站长', 'meta');
 }

@@ -17,6 +17,7 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //帮助函数
         $src_path = __DIR__;
         foreach (glob($src_path . '/helpers/*.php') as $filename) {
             require_once $filename;
