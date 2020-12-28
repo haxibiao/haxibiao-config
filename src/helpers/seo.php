@@ -525,3 +525,20 @@ function get_seo_meta()
     }
     return Haxibiao\Config\Seo::getValue('站长', 'meta');
 }
+
+if(!function_exists('get_seo_push')){
+    function get_seo_push($seo_site_name = null, $group_name = "百度")
+    {
+        if ($seo_site_name) {
+
+            $js = Haxibiao\Config\Seo::query()
+                ->where('group', $group_name)
+                ->where('name', $seo_site_name . "_push")->first();
+            if ($js) {
+                return $js->value;
+            }
+        } else {
+            Seo::getValue('百度', 'push');
+        }
+    }
+}
