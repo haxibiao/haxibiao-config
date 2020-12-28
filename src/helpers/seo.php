@@ -452,6 +452,12 @@ function seo_value($group, $name)
  */
 function get_seo_tj()
 {
+    //站群模式
+    if (config('cms.multi_domains')) {
+        if ($site = cms_get_site()) {
+            return $site->footer_js;
+        }
+    }
     return Seo::getValue('统计', 'matomo');
 }
 
@@ -461,20 +467,44 @@ function get_seo_tj()
  */
 function get_seo_title()
 {
+    //站群模式
+    if (config('cms.multi_domains')) {
+        if ($site = cms_get_site()) {
+            return $site->title;
+        }
+    }
     return Haxibiao\Config\Seo::getValue('TKD', 'title');
 }
 
 function get_seo_keywords()
 {
+    //站群模式
+    if (config('cms.multi_domains')) {
+        if ($site = cms_get_site()) {
+            return $site->keywords;
+        }
+    }
     return Haxibiao\Config\Seo::getValue('TKD', 'keywords');
 }
 
 function get_seo_description()
 {
+    //站群模式
+    if (config('cms.multi_domains')) {
+        if ($site = cms_get_site()) {
+            return $site->description;
+        }
+    }
     return Haxibiao\Config\Seo::getValue('TKD', 'description');
 }
 
 function get_seo_meta()
 {
+    //站群模式
+    if (config('cms.multi_domains')) {
+        if ($site = cms_get_site()) {
+            return $site->verify_meta;
+        }
+    }
     return Haxibiao\Config\Seo::getValue('站长', 'meta');
 }
