@@ -112,7 +112,7 @@ function neihan_beian_domains()
         "xinfashun.cn"     => "新发顺",
         "jingshiyang.cn"   => "静师杨",
         "jinlaikaisuo.cn"  => "进来开锁",
-        "hushengtouzi.cn"  => "沪深投资",
+        "hushentouzi.cn"   => "沪深投资",
     ];
 }
 
