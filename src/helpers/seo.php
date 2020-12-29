@@ -515,7 +515,7 @@ function get_seo_description()
     return Haxibiao\Config\Seo::getValue('TKD', 'description');
 }
 
-function get_seo_meta()
+function get_seo_meta($group_name = "站长")
 {
     //站群模式
     if (config('cms.multi_domains')) {
@@ -523,10 +523,10 @@ function get_seo_meta()
             return $site->verify_meta;
         }
     }
-    return Haxibiao\Config\Seo::getValue('站长', 'meta');
+    return Haxibiao\Config\Seo::getValue($group_name, 'meta');
 }
 
-if(!function_exists('get_seo_push')){
+if (!function_exists('get_seo_push')) {
     function get_seo_push($seo_site_name = null, $group_name = "百度")
     {
         if ($seo_site_name) {
