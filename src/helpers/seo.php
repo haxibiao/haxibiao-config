@@ -162,10 +162,10 @@ function neihan_sites_domains()
         "aishangyueyu.com"     => "爱上粤语",
         "laoyueyu.com"         => "老粤语",
 
-        "xingqilianren.com"    => "星期恋人",
-        "didipeipei.com"       => "滴滴陪陪",
-        "pipipei.com"          => "皮皮陪",
-        "tiantiandati.cn"      => "天天答题",
+        // "xingqilianren.com"    => "星期恋人",
+        // "didipeipei.com"       => "滴滴陪陪",
+        // "pipipei.com"          => "皮皮陪",
+        // "tiantiandati.cn"      => "天天答题",
     ];
 }
 
