@@ -32,7 +32,7 @@ function seo_small_logo()
 
 function seo_site_name()
 {
-    $sites_name_map = neihan_sites_domains();
+    $sites_name_map = array_merge(neihan_sites_domains(), neihan_beian_domains());
     if ($name = $sites_name_map[get_domain()] ?? null) {
         return $name;
     }
