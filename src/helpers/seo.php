@@ -5,19 +5,19 @@ use Haxibiao\Config\Seo;
 
 function push_url_baidu($urls)
 {
-    $urls = array($urls);
-    $api = 'http://data.zz.baidu.com/urls?site=https://neihandianying.com&token=0Oay0vFOYGDk9x34';
-    $ch = curl_init();
-    $options =  array(
-        CURLOPT_URL => $api,
-        CURLOPT_POST => true,
+    $urls    = array($urls);
+    $api     = 'http://data.zz.baidu.com/urls?site=https://neihandianying.com&token=0Oay0vFOYGDk9x34';
+    $ch      = curl_init();
+    $options = array(
+        CURLOPT_URL            => $api,
+        CURLOPT_POST           => true,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => implode("\n", $urls),
-        CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+        CURLOPT_POSTFIELDS     => implode("\n", $urls),
+        CURLOPT_HTTPHEADER     => array('Content-Type: text/plain'),
     );
     curl_setopt_array($ch, $options);
     $result = curl_exec($ch);
-    echo  $result;
+    echo $result;
 }
 
 function seo_friendly_urls()
@@ -97,18 +97,32 @@ function matomo_site_id()
 }
 
 /**
- * 所有内涵矩阵站点域名
+ * 所有内涵站群备案域名
+ */
+function neihan_beian_domains()
+{
+    return [
+        "diudie.com"       => "丢碟图解",
+        "dianmoge.com"     => "点墨阁",
+        "ainicheng.com"    => "爱你城",
+        "youjianqi.com"    => "有剑气",
+        "jucheshe.com"     => "聚车社",
+        "qunyige.com"      => "群衣阁",
+        "shengkangtang.cn" => "圣康堂",
+        "xinfashun.cn"     => "新发顺",
+        "jingshiyang.cn"   => "静师杨",
+        "jinlaikaisuo.cn"  => "进来开锁",
+        "hushengtouzi.cn"  => "沪深投资",
+    ];
+}
+
+/**
+ * 所有内涵站群未备案域名
  */
 function neihan_sites_domains()
 {
-
     return [
-        "diudie.com"           => "丢碟图解",
         "caohan.com"           => "曹汉视频",
-
-        "neihanxinwen.com"     => "内涵新闻",
-        "neihanxiaoshipin.com" => "内涵小视频",
-        "neihanduanshipin.com" => "内涵短视频",
 
         "jingdianmeiju.com"    => "经典美剧",
         "jingdianriju.com"     => "经典日剧",
@@ -137,20 +151,24 @@ function neihan_sites_domains()
         "neihanhanju.com"      => "内涵韩剧",
         "neihangangju.com"     => "内涵港剧",
 
+        "neihanxinwen.com"     => "内涵新闻",
+        "neihanxiaoshipin.com" => "内涵小视频",
+        "neihanduanshipin.com" => "内涵短视频",
+        "neihanyouxi.com"      => "内涵游戏",
+
         "aishanghanju.com"     => "爱上韩剧",
         "aishangriju.com"      => "爱上日剧",
         "aishanggangju.com"    => "爱上港剧",
         "aishangyueyu.com"     => "爱上粤语",
-
         "laoyueyu.com"         => "老粤语",
+
         "xingqilianren.com"    => "星期恋人",
         "didipeipei.com"       => "滴滴陪陪",
         "pipipei.com"          => "皮皮陪",
         "tiantiandati.cn"      => "天天答题",
-        "neihanyouxi.com"      => "内涵游戏",
-
     ];
 }
+
 function neihan_ga_measure_id()
 {
     if (request() && $url = request()->getUri()) {
