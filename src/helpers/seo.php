@@ -162,7 +162,6 @@ function neihan_sites_domains()
         "neihangangju.com"     => "内涵港剧",
 
         "neihanxinwen.com"     => "内涵新闻",
-        "neihandianying.com"   => "内涵电影",
         "neihanxiaoshipin.com" => "内涵小视频",
         "neihanduanshipin.com" => "内涵短视频",
         "neihanyouxi.com"      => "内涵游戏",
