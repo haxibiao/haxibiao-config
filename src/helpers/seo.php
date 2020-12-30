@@ -97,6 +97,16 @@ function matomo_site_id()
 }
 
 /**
+ * 是否备案站群
+ *
+ * @return boolean
+ */
+function is_beian_sites()
+{
+    return in_array(get_domain(), array_keys(neihan_beian_domains()));
+}
+
+/**
  * 所有内涵站群备案域名
  */
 function neihan_beian_domains()
