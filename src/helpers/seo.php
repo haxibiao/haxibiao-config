@@ -54,7 +54,7 @@ function matomo_site_id()
 
             "jingdianmeiju.com"    => "2",
             "jingdianriju.com"     => "3",
-            "jindianhanju.com"     => "4",
+            "jingdianhanju.com"    => "4",
             "jingdiangangju.com"   => "5",
             "jingdianyueyu.com"    => "6",
 
@@ -126,7 +126,7 @@ function neihan_sites_domains()
 
         "jingdianmeiju.com"    => "经典美剧",
         "jingdianriju.com"     => "经典日剧",
-        "jindianhanju.com"     => "经典韩剧",
+        "jingdianhanju.com"    => "经典韩剧",
         "jingdiangangju.com"   => "经典港剧",
         "jingdianyueyu.com"    => "经典粤语",
 
@@ -180,7 +180,7 @@ function neihan_ga_measure_id()
 
             "jingdianmeiju.com"    => "G-24RS5FX84Z",
             "jingdianriju.com"     => "G-VQ9ZZDZ71E",
-            "jindianhanju.com"     => "G-D9T3L30JHX",
+            "jingdianhanju.com"    => "G-D9T3L30JHX",
             "jingdiangangju.com"   => "G-WLFYB2J9DV",
             "jingdianyueyu.com"    => "G-CW14RTZJD8",
 
@@ -234,7 +234,7 @@ function neihan_tencent_app_id()
 
             "jingdianmeiju.com"    => "",
             "jingdianriju.com"     => "",
-            "jindianhanju.com"     => "",
+            "jingdianhanju.com"    => "",
             "jingdiangangju.com"   => "",
             "jingdianyueyu.com"    => "",
 
@@ -288,7 +288,7 @@ function siteName()
 
             "jingdianmeiju.com"    => "经典美剧",
             "jingdianriju.com"     => "经典日剧",
-            "jindianhanju.com"     => "经典韩剧",
+            "jingdianhanju.com"    => "经典韩剧",
             "jingdiangangju.com"   => "经典港剧",
             "jingdianyueyu.com"    => "经典粤语",
 
@@ -436,7 +436,7 @@ function baidu_id()
 
             "jingdianmeiju.com"    => "2",
             "jingdianriju.com"     => "3",
-            "jindianhanju.com"     => "4",
+            "jingdianhanju.com"    => "4",
             "jingdiangangju.com"   => "5",
             "jingdianyueyu.com"    => "6",
 
