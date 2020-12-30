@@ -515,7 +515,9 @@ function get_seo_title()
     //站群模式
     if (config('cms.multi_domains')) {
         if ($site = cms_get_site()) {
-            return $site->title;
+            if ($site->title) {
+                return $site->title;
+            }
         }
     }
     return Haxibiao\Config\Seo::getValue('TKD', 'title');
@@ -526,7 +528,9 @@ function get_seo_keywords()
     //站群模式
     if (config('cms.multi_domains')) {
         if ($site = cms_get_site()) {
-            return $site->keywords;
+            if ($site->keywords) {
+                return $site->keywords;
+            }
         }
     }
     return Haxibiao\Config\Seo::getValue('TKD', 'keywords');
@@ -537,7 +541,9 @@ function get_seo_description()
     //站群模式
     if (config('cms.multi_domains')) {
         if ($site = cms_get_site()) {
-            return $site->description;
+            if ($site->description) {
+                return $site->description;
+            }
         }
     }
     return Haxibiao\Config\Seo::getValue('TKD', 'description');
@@ -548,7 +554,9 @@ function get_seo_meta($group_name = "站长")
     //站群模式
     if (config('cms.multi_domains')) {
         if ($site = cms_get_site()) {
-            return $site->verify_meta;
+            if ($site->verify_meta) {
+                return $site->verify_meta;
+            }
         }
     }
     return Haxibiao\Config\Seo::getValue($group_name, 'meta');
