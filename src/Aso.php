@@ -2,7 +2,7 @@
 
 namespace Haxibiao\Config;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Aso extends Model

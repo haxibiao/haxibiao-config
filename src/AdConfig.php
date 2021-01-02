@@ -2,7 +2,7 @@
 
 namespace Haxibiao\Config;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class AdConfig extends Model
 {
