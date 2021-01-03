@@ -27,13 +27,6 @@ class ConfigServiceProvider extends ServiceProvider
             return new SEOFriendlyUrl(new Config($app['config']->get('seo.frienly_urls', [])));
         });
 
-        $this->app->singleton('app.config.beian', function ($app) {
-            return \App\AppConfig::where([
-                'group' => 'record',
-                'name'  => 'web',
-            ])->first();
-        });
-
         $this->app->bind(Contracts\SEOFriendly::class, 'haxibiao-config.friendlyurl');
 
         // Register Commands
@@ -54,5 +47,19 @@ class ConfigServiceProvider extends ServiceProvider
         if (!app()->configurationIsCached()) {
             $this->mergeConfigFrom(__DIR__ . '/../config/seo.php', 'seo');
         }
+
+        $this->app->singleton('app.config.beian', function ($app) {
+            return \App\AppConfig::where([
+                'group' => 'record',
+                'name'  => 'web',
+            ])->first();
+        });
+
+        $this->app->singleton('asos', function ($app) {
+            return \App\Aso::all();
+        });
+        $this->app->singleton('seos', function ($app) {
+            return \App\Seo::all();
+        });
     }
 }

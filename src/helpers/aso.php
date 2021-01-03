@@ -22,14 +22,21 @@ function adIsOpened()
 
 function aso_value($group, $name)
 {
-
+    if ($asos = app('asos')) {
+        foreach ($asos as $aso) {
+            if ($aso->group == $group) {
+                if ($aso->name == $name) {
+                    return $aso->value;
+                }
+            }
+        }
+    }
     return Aso::getValue($group, $name);
 }
 
 function getDownloadUrl()
 {
-
-    $apkUrl = Aso::getValue('下载页', '安卓地址');
+    $apkUrl = aso_value('下载页', '安卓地址');
     if (is_null($apkUrl) || empty($apkUrl)) {
         return null;
     }
@@ -38,7 +45,6 @@ function getDownloadUrl()
 
 function douyinOpen()
 {
-
     $config = Config::where([
         'name' => 'douyin',
     ])->first();
@@ -73,7 +79,7 @@ function isRecording()
 function small_logo()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
-        $logo = Aso::getValue('下载页', 'logo');
+        $logo = aso_value('下载页', 'logo');
 
         if (empty($logo)) {
             return '/logo/' . env('APP_DOMAIN') . '.small.png';
@@ -119,7 +125,7 @@ function app_qrcode_url()
 function qrcode_url()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
-        $apkUrl = Aso::getValue('下载页', '安卓地址');
+        $apkUrl = aso_value('下载页', '安卓地址');
         if (array_key_exists(get_domain(), neihan_sites_domains())) {
             $logo = seo_small_logo();
         } else {

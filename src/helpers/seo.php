@@ -489,6 +489,15 @@ function baidu_id()
 
 function seo_value($group, $name)
 {
+    if ($seos = app('seos')) {
+        foreach ($seos as $seo) {
+            if ($seo->group == $group) {
+                if ($seo->name == $name) {
+                    return $seo->value;
+                }
+            }
+        }
+    }
     return Seo::getValue($group, $name);
 }
 
@@ -520,7 +529,7 @@ function get_seo_title()
             }
         }
     }
-    return Haxibiao\Config\Seo::getValue('TKD', 'title');
+    return seo_value('TKD', 'title');
 }
 
 function get_seo_keywords()
@@ -533,7 +542,7 @@ function get_seo_keywords()
             }
         }
     }
-    return Haxibiao\Config\Seo::getValue('TKD', 'keywords');
+    return seo_value('TKD', 'keywords');
 }
 
 function get_seo_description()
@@ -546,7 +555,7 @@ function get_seo_description()
             }
         }
     }
-    return Haxibiao\Config\Seo::getValue('TKD', 'description');
+    return seo_value('TKD', 'description');
 }
 
 function get_seo_meta($group_name = "站长")
@@ -559,14 +568,13 @@ function get_seo_meta($group_name = "站长")
             }
         }
     }
-    return Haxibiao\Config\Seo::getValue($group_name, 'meta');
+    return seo_value($group_name, 'meta');
 }
 
 if (!function_exists('get_seo_push')) {
     function get_seo_push($seo_site_name = null, $group_name = "百度")
     {
         if ($seo_site_name) {
-
             $js = Haxibiao\Config\Seo::query()
                 ->where('group', $group_name)
                 ->where('name', $seo_site_name . "_push")->first();
@@ -574,7 +582,7 @@ if (!function_exists('get_seo_push')) {
                 return $js->value;
             }
         } else {
-            Seo::getValue('百度', 'push');
+            seo_value('百度', 'push');
         }
     }
 }
