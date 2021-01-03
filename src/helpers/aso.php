@@ -58,20 +58,16 @@ function douyinOpen()
 function isRecording()
 {
     if (class_exists("App\\AppConfig", true)) {
-
-        $config = \App\AppConfig::where([
-            'group' => 'record',
-            'name'  => 'web',
-        ])->first();
+        $config = app('app.config.beian');
+        //兼容答赚web?
         if ($config === null) {
             return true;
         }
         if ($config->state === \App\AppConfig::STATUS_ON) {
             return true;
         }
-
-        return false;
     }
+    return false;
 }
 
 function small_logo()
@@ -101,12 +97,11 @@ function app_qrcode_url()
 
     //包含PC扫码场景，先打开app下载页
     $appDownloadPageUrl = url('/app');
-    if(array_key_exists(get_domain(),neihan_sites_domains())){
-        $small_logo_path    = seo_small_logo();
-    }else{
-        $small_logo_path    = small_logo();
+    if (array_key_exists(get_domain(), neihan_sites_domains())) {
+        $small_logo_path = seo_small_logo();
+    } else {
+        $small_logo_path = small_logo();
     }
-
 
     //中心带上small logo
     $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
@@ -125,11 +120,11 @@ function qrcode_url()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
         $apkUrl = Aso::getValue('下载页', '安卓地址');
-        if(array_key_exists(get_domain(),neihan_sites_domains())){
-            $logo    = seo_small_logo();
-        }else{
-            $logo   = small_logo();
-        }    
+        if (array_key_exists(get_domain(), neihan_sites_domains())) {
+            $logo = seo_small_logo();
+        } else {
+            $logo = small_logo();
+        }
         $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
         if (!empty(env('COS_DOMAIN'))) {
             if (@file_get_contents($logo)) {
