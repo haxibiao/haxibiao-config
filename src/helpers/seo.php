@@ -560,15 +560,19 @@ function get_seo_description()
 
 function get_seo_meta($group_name = "站长")
 {
-    //站群模式
-    if (config('cms.multi_domains')) {
-        if ($site = cms_get_site()) {
-            if ($site->verify_meta) {
-                return $site->verify_meta;
+    //配合调试模式才允许验证站长
+    if (env('APP_DEBUG')) {
+        if (config('cms.multi_domains')) {
+            //站群模式
+
+            if ($site = cms_get_site()) {
+                if ($site->verify_meta) {
+                    return $site->verify_meta;
+                }
             }
         }
+        return seo_value($group_name, 'meta');
     }
-    return seo_value($group_name, 'meta');
 }
 
 if (!function_exists('get_seo_push')) {
