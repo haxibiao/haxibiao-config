@@ -27,7 +27,7 @@ function seo_friendly_urls()
 
 function seo_small_logo()
 {
-    return url('/logo/' . get_domain() . '.small.png');
+    return seo_url('/logo/' . get_domain() . '.small.png');
 }
 
 function seo_site_name()

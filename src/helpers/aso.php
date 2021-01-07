@@ -85,7 +85,7 @@ function isRecording()
 
 function small_logo()
 {
-    return url('/logo/' . get_domain() . '.small.png');
+    return seo_url('/logo/' . get_domain() . '.small.png');
 }
 
 /**
@@ -97,11 +97,11 @@ function app_qrcode_url()
     $qrcode_full_path = public_path($qrcode_path);
     //缓存的二维码图片
     if (file_exists($qrcode_full_path)) {
-        return url($qrcode_path);
+        return seo_url($qrcode_path);
     }
 
     //包含PC扫码场景，先打开app下载页
-    $appDownloadPageUrl = url('/app');
+    $appDownloadPageUrl = seo_url('/app');
     if (array_key_exists(get_domain(), neihan_sites_domains())) {
         $small_logo_path = seo_small_logo();
     } else {
@@ -117,7 +117,7 @@ function app_qrcode_url()
     try {
         @file_put_contents($qrcode_full_path, $qrcode->generate($appDownloadPageUrl));
     } catch (Exception $ex) {}
-    return url($qrcode_path);
+    return seo_url($qrcode_path);
 
 }
 
