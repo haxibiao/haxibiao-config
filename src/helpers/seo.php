@@ -32,11 +32,18 @@ function seo_small_logo()
 
 function seo_site_name()
 {
+    //1尊重cms配置站群名称
+    if ($site = cms_get_site()) {
+        return $site->name;
+    }
+
+    //2尊重内部站群名字
     $sites_name_map = array_merge(neihan_sites_domains(), neihan_beian_domains());
     if ($name = $sites_name_map[get_domain()] ?? null) {
         return $name;
     }
 
+    //3最后尊重env name_cn
     return env('APP_NAME_CN') ?? '内涵电影';
 }
 
