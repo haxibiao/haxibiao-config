@@ -14,10 +14,10 @@ function adIsOpened()
         'name'  => 'ad',
     ])->first();
     //如果使用的是版本开关
-    if($config &&isset($config->app_version)){
-        $user=getUser(false);
-        $userVersion=$user&&$user->profile->app_version?$user->profile->app_version:$config->app_version;
-        $config->state = $config->isOpen($userVersion)=='on'?AppConfig::STATUS_ON:AppConfig::STATUS_OFF;
+    if ($config && isset($config->app_version)) {
+        $user          = getUser(false);
+        $userVersion   = $user && $user->profile->app_version ? $user->profile->app_version : $config->app_version;
+        $config->state = $config->isOpen($userVersion) == 'on' ? AppConfig::STATUS_ON : AppConfig::STATUS_OFF;
 
     }
     if ($config && $config->state === AppConfig::STATUS_OFF) {
@@ -85,15 +85,7 @@ function isRecording()
 
 function small_logo()
 {
-    if (class_exists("Haxibiao\\Config\\Aso", true)) {
-        $logo = aso_value('下载页', 'logo');
-
-        if (empty($logo)) {
-            return '/logo/' . env('APP_DOMAIN') . '.small.png';
-        } else {
-            return $logo;
-        }
-    }
+    return url('/logo/' . get_domain() . '.small.png');
 }
 
 /**
