@@ -25,12 +25,7 @@ class AppConfig extends Resource
 
     public static function label()
     {
-        return "开关";
-    }
-
-    public static function singularLabel()
-    {
-        return "开关";
+        return "APP配置";
     }
 
     public function fields(Request $request)

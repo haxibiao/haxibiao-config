@@ -24,12 +24,7 @@ class Aso extends Resource
 
     public static function label()
     {
-        return "Aso";
-    }
-
-    public static function singularLabel()
-    {
-        return "Aso";
+        return "Aso配置";
     }
 
     public function fields(Request $request)

@@ -37,7 +37,7 @@ class AdConfig extends Resource
 
     public static function label()
     {
-        return "广告";
+        return "广告配置";
     }
     /**
      * Get the fields displayed by the resource.

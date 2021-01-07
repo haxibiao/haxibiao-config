@@ -48,7 +48,7 @@ class Version extends Resource
 
     public static function label()
     {
-        return '版本';
+        return 'APP版本';
     }
 
     public static $group = '系统管理';

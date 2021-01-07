@@ -44,6 +44,11 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //命令行模式
+        if ($this->app->runningInConsole()) {
+            // 发布 Nova
+        }
+
         if (!app()->configurationIsCached()) {
             $this->mergeConfigFrom(__DIR__ . '/../config/seo.php', 'seo');
         }

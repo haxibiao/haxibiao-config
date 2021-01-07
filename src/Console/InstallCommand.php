@@ -13,7 +13,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'config:install';
+    protected $signature = 'config:install {--force}';
 
     /**
      * The Console command description.
@@ -38,7 +38,10 @@ class InstallCommand extends Command
         //复制所有app stubs
         foreach (glob(__DIR__ . '/stubs/*.stub') as $filepath) {
             $filename = basename($filepath);
-            copy($filepath, app_path(str_replace(".stub", ".php", $filename)));
+            $dest     = app_path(str_replace(".stub", ".php", $filename));
+            if (!file_exists($dest) || $this->option('force')) {
+                copy($filepath, $dest);
+            }
         }
 
         //复制所有nova stubs
@@ -47,7 +50,10 @@ class InstallCommand extends Command
         }
         foreach (glob(__DIR__ . '/stubs/Nova/*.stub') as $filepath) {
             $filename = basename($filepath);
-            copy($filepath, app_path('Nova/' . str_replace(".stub", ".php", $filename)));
+            $dest     = app_path(str_replace(".stub", ".php", $filename));
+            if (!file_exists($dest) || $this->option('force')) {
+                copy($filepath, $dest);
+            }
         }
     }
 }

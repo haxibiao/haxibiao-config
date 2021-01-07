@@ -17,12 +17,7 @@ class Config extends Resource
     public static $model = \App\Config::class;
     public static function label()
     {
-        return "配置";
-    }
-
-    public static function singularLabel()
-    {
-        return "配置";
+        return "系统配置";
     }
     public static $group = '系统管理';
     /**

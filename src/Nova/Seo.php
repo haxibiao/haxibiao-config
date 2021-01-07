@@ -22,12 +22,7 @@ class Seo extends Resource
 
     public static function label()
     {
-        return "Seo";
-    }
-
-    public static function singularLabel()
-    {
-        return "Seo";
+        return "Seo配置";
     }
 
     public function fields(Request $request)
