@@ -72,11 +72,11 @@ function isRecording()
 {
     if (class_exists("App\\AppConfig", true)) {
         $config = app('app.config.beian');
-        //兼容答赚web?
-        if ($config === null) {
-            return true;
-        }
-        if ($config->state === \App\AppConfig::STATUS_ON) {
+        // //兼容答赚web默认开启备案检查模式?
+        // if ($config === null) {
+        //     return true;
+        // }
+        if ($config && $config->state === \App\AppConfig::STATUS_ON) {
             return true;
         }
     }
@@ -121,6 +121,9 @@ function app_qrcode_url()
 
 }
 
+/**
+ * @deprecated 返回的是base64 data到页面的，建议用app_qrcode_url返回图片地址
+ */
 function qrcode_url()
 {
     if (class_exists("Haxibiao\\Config\\Aso", true)) {
@@ -141,10 +144,12 @@ function qrcode_url()
             }
         }
 
-        $qrcode = $qrcode->generate($apkUrl);
+        if (!empty($apkUrl)) {
+            $qrcode = $qrcode->generate($apkUrl);
+            $data   = base64_encode($qrcode);
+            return $data;
+        }
 
-        $path = base64_encode($qrcode);
-
-        return $path;
+        return null;
     }
 }
