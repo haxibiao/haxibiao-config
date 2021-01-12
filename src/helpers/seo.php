@@ -120,11 +120,6 @@ function neihan_beian_domains()
 {
     return [
         "diudie.com"       => "丢碟图解",
-        "dianmoge.com"     => "点墨阁",
-        "ainicheng.com"    => "爱你城",
-        "youjianqi.com"    => "有剑气",
-        "jucheshe.com"     => "聚车社",
-        "qunyige.com"      => "群衣阁",
         "shengkangtang.cn" => "圣康堂",
         "xinfashun.cn"     => "新发顺",
         "jingshiyang.cn"   => "静师杨",
