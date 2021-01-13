@@ -1,47 +1,47 @@
 {
-  "name": "haxibiao/config",
-  "description": "哈希表配置库",
-  "type": "project",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "ivan",
-      "email": "ivan@haxibiao.com"
-    }
-  ],
-  "require": {
-    "haxibiao/helpers": "*",
-    "laravel/nova": "*"
-  },
-  "repositories": {
-    "nova": {
-      "type": "vcs",
-      "url": "http://code.haxibiao.cn/web/nova.git"
+    "name": "haxibiao/config",
+    "description": "哈希表配置库",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ivan",
+            "email": "ivan@haxibiao.com"
+        }
+    ],
+    "require": {
+        "haxibiao/helpers": "*",
+        "laravel/nova": "*"
     },
-    "helpers": {
-      "type": "vcs",
-      "url": "http://code.haxibiao.cn/packages/haxibiao-helpers.git"
+    "repositories": {
+        "nova": {
+            "type": "vcs",
+            "url": "http://code.haxibiao.cn/web/nova.git"
+        },
+        "helpers": {
+            "type": "vcs",
+            "url": "https://github.com/haxibiao/haxibiao-helpers.git"
+        }
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Haxibiao\\Config\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Haxibiao\\Config\\ConfigServiceProvider"
+            ],
+            "aliases": {
+                "SEOFriendlyUrl": "Haxibiao\\Config\\Facades\\SEOFriendlyUrl"
+            }
+        }
     }
-  },
-  "minimum-stability": "dev",
-  "autoload": {
-    "psr-0": {
-      "Haxibiao\\Config\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "classmap": [
-      "tests/"
-    ]
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Haxibiao\\Config\\ConfigServiceProvider"
-      ],
-      "aliases": {
-        "SEOFriendlyUrl": "Haxibiao\\Config\\Facades\\SEOFriendlyUrl"
-      }
-    }
-  }
 }
