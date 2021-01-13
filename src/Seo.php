@@ -2,7 +2,8 @@
 
 namespace Haxibiao\Config;
 
-use App\Model;
+use Illuminate\Database\Eloquent\Model;
+
 
 class Seo extends Model
 {

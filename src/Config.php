@@ -2,7 +2,7 @@
 
 namespace Haxibiao\Config;
 
-use App\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Config extends Model
 {
