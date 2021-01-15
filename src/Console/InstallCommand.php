@@ -29,6 +29,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $this->info('安装 haxibiao-config ...');
         $force = $this->option('force');
 
         $this->comment('复制 stubs ...');
