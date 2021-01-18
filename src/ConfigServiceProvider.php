@@ -35,6 +35,8 @@ class ConfigServiceProvider extends ServiceProvider
             EnvRefresh::class,
             SetEnv::class,
         ]);
+
+        $this->bindPathsInContainer();
     }
 
     /**
@@ -47,6 +49,10 @@ class ConfigServiceProvider extends ServiceProvider
         //命令行模式
         if ($this->app->runningInConsole()) {
             // 发布 Nova
+
+            //注册 migrations paths
+            $this->loadMigrationsFrom($this->app->make('path.haxibiao-config.migrations'));
+
         }
 
         if (!app()->configurationIsCached()) {
@@ -66,5 +72,24 @@ class ConfigServiceProvider extends ServiceProvider
         $this->app->singleton('seos', function ($app) {
             return \App\Seo::all();
         });
+    }
+
+    /**
+     * Bind paths in container.
+     *
+     * @return void
+     */
+    protected function bindPathsInContainer()
+    {
+        foreach ([
+            'path.haxibiao-config'            => $root = dirname(__DIR__),
+            'path.haxibiao-config.config'     => $root . '/config',
+            'path.haxibiao-config.graphql'    => $root . '/graphql',
+            'path.haxibiao-config.database'   => $database = $root . '/database',
+            'path.haxibiao-config.migrations' => $database . '/migrations',
+            'path.haxibiao-config.seeds'      => $database . '/seeds',
+        ] as $abstract => $instance) {
+            $this->app->instance($abstract, $instance);
+        }
     }
 }

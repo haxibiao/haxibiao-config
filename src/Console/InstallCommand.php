@@ -34,5 +34,9 @@ class InstallCommand extends Command
 
         $this->comment('复制 stubs ...');
         copyStubs(__DIR__, $force);
+
+        $this->comment('迁移数据库变化...');
+        $this->call('migrate');
+
     }
 }
