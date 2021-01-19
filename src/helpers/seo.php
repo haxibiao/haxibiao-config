@@ -226,6 +226,8 @@ function neihan_ga_measure_id()
             'dianmoge.com'         => 'G-92H6K7HTKT',
             'xiamaoshipin.com'     => 'G-3KK2NYZYLF',
             'cheliange.cn'         => 'G-H6DLJJWY2Y',
+            'dongdaima.com'        => 'G-PKQL2HN9BM',
+            'ainicheng.com'        => 'G-PX3RDWLYYY',
         ];
 
         $host = parse_url($url)['host'];
