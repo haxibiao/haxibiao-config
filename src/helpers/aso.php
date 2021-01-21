@@ -133,21 +133,24 @@ function qrcode_url()
         } else {
             $logo = small_logo();
         }
-        $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
-        if (!empty(env('COS_DOMAIN'))) {
-            if (@file_get_contents($logo)) {
-                $qrcode->merge($logo, .1, true);
-            } else {
-                if (file_exists(public_path($logo))) {
-                    $qrcode->merge(public_path($logo), .1, true);
+
+        if (class_exists("SimpleSoftwareIO\QrCode\Facades\QrCode")) {
+            $qrcode = QrCode::format('png')->size(250)->encoding('UTF-8');
+            if (!empty(env('COS_DOMAIN'))) {
+                if (@file_get_contents($logo)) {
+                    $qrcode->merge($logo, .1, true);
+                } else {
+                    if (file_exists(public_path($logo))) {
+                        $qrcode->merge(public_path($logo), .1, true);
+                    }
                 }
             }
-        }
 
-        if (!empty($apkUrl)) {
-            $qrcode = $qrcode->generate($apkUrl);
-            $data   = base64_encode($qrcode);
-            return $data;
+            if (!empty($apkUrl)) {
+                $qrcode = $qrcode->generate($apkUrl);
+                $data   = base64_encode($qrcode);
+                return $data;
+            }
         }
 
         return null;
