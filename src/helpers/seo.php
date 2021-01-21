@@ -27,7 +27,8 @@ function seo_friendly_urls()
 
 function seo_small_logo()
 {
-    return seo_url('/logo/' . get_domain() . '.small.png');
+    //logo主要针对请求域名变化
+    return small_logo();
 }
 
 function seo_site_name()

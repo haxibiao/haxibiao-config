@@ -83,9 +83,35 @@ function isRecording()
     return false;
 }
 
+function touch_logo()
+{
+    return str_replace('.small.', '.touch.', small_logo());
+}
+
+function web_logo()
+{
+    return str_replace('.small.', '.web.', small_logo());
+}
+
+/**
+ * 注册登录场景用的文字logo
+ */
+function text_logo()
+{
+    return str_replace('.small.', '.text.', small_logo());
+}
+
+/**
+ * 小尺寸logo,大部分场景得到logo,尺寸60*60
+ */
 function small_logo()
 {
-    return seo_url('/logo/' . get_domain() . '.small.png');
+    $logo_path = '/logo/' . get_domain() . '.small.png';
+    if (file_exists(public_path('/logo/' . get_domain() . '.small.png'))) {
+        return url($logo_path);
+    }
+    //breeze默认logo
+    return url("/vendor/breeze/images/logo/default.small.png");
 }
 
 /**
