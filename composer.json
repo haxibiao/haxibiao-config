@@ -10,8 +10,11 @@
         }
     ],
     "require": {
-        "haxibiao/helpers": "*",
-        "laravel/nova": "*"
+        "php": ">=7.3",
+        "laravel/framework": "^8.0",
+        "nuwave/lighthouse": "^4.10",
+        "haxibiao/console": "*",
+        "haxibiao/helpers": "*"
     },
     "repositories": {
         "nova": {

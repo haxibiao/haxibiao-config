@@ -13,7 +13,7 @@
 
 ## 环境要求
 
-1. laravel/nova
+1. haxibiao/console
 2. haxibiao/helpers
 
 ## 安装步骤
