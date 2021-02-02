@@ -42,7 +42,11 @@ class SetEnv extends Command
     {
         //先覆盖最新的 .env.prod
         $envFile = app()->environmentFilePath();
-        \file_put_contents($envFile, @file_get_contents($envFile . ".prod"));
+        $env     = @file_get_contents($envFile . ".prod");
+        if (!$env) {
+            $env = @file_get_contents($envFile . ".local");
+        }
+        \file_put_contents($envFile, $env);
 
         $this->setKV(['DB_PASSWORD' => @file_get_contents("/etc/sql_pass_dm")]);
         // $this->setKV(['MONGO_PASSWORD' => @file_get_contents("/etc/nosql_pass")]);
