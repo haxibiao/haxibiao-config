@@ -18,6 +18,7 @@ class CreateAppConfigsTable extends Migration
             $table->string('name')->comment('功能名称, 例子：ad,wallet');
             $table->unsignedInteger('state')->default(1)->comment('状态，1 开启 0 关闭');
             $table->json('data')->nullable()->comment('app配置信息');
+            $table->string('app_version')->default('all')->comment('开关控制指定版本，all 为全版本受控');
             $table->timestamps();
         });
     }
