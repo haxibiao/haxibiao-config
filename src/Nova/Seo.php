@@ -14,16 +14,16 @@ class Seo extends Resource
 
     public static $title = 'id';
 
-    public static $group = '系统管理';
+    public static $group = '配置中心';
+
+    public static function label()
+    {
+        return "Seo";
+    }
 
     public static $search = [
         'id', 'name', 'group',
     ];
-
-    public static function label()
-    {
-        return "Seo配置";
-    }
 
     public function fields(Request $request)
     {

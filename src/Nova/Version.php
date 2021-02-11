@@ -16,51 +16,20 @@ use Laravel\Nova\Fields\Textarea;
 
 class Version extends Resource
 {
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\Version';
-
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'name';
-
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
+    public static $model  = 'App\Version';
+    public static $title  = 'name';
     public static $search = [
         'id',
     ];
-
-    /**
-     * 指示资源是否是全局可搜索的。
-     *
-     * @var bool
-     */
     public static $globallySearchable = false;
 
+    public static $group = '配置中心';
     public static function label()
     {
-        return 'APP版本';
+        return '版本';
     }
 
-    public static $group = '系统管理';
-
     public static $parent = null;
-
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function fields(Request $request)
     {
         return [

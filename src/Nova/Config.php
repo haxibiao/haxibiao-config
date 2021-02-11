@@ -9,29 +9,13 @@ use Laravel\Nova\Fields\Text;
 
 class Config extends Resource
 {
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
     public static $model = \App\Config::class;
     public static function label()
     {
-        return "系统配置";
+        return "系统";
     }
-    public static $group = '系统管理';
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'name';
-
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
+    public static $group  = '配置中心';
+    public static $title  = 'name';
     public static $search = [
         'id', 'name', 'value',
     ];
