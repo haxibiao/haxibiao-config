@@ -15,7 +15,7 @@ class EnvRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'env:refresh {--db_host=localhost} {--db_database=} {--db_port=3306} {--env= : 环境，默认prod,可选local|develop|staging}';
+    protected $signature = 'env:refresh {--db_host=} {--db_database=} {--db_port=}';
 
     /**
      * The console command description.
@@ -41,10 +41,8 @@ class EnvRefresh extends Command
      */
     public function handle()
     {
-        if ($env = $this->option('env')) {
-            return $this->$env();
-        }
-        return $this->prod();
+        $env = $this->option('env') ?? 'prod';
+        $this->$env();
     }
 
     public function copy_env()
@@ -59,56 +57,66 @@ class EnvRefresh extends Command
 
     public function local()
     {
+        $this->info('更新env... 环境 local');
         $this->copy_env();
-        $this->updateWebConfig();
-
         $this->updateEnv([
             'APP_ENV'          => 'local',
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
         ]);
 
+        $this->info('更新db cloud 等配置...');
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
+
     }
 
     public function develop()
     {
+        $this->info('更新env... 环境 develop');
         $this->copy_env();
-        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
-
         $this->updateEnv([
             'APP_ENV'          => 'develop',
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
         ]);
+
+        $this->info('更新db cloud 等配置...');
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
+
     }
 
     public function staging()
     {
+        $this->info('更新env... 环境 staging');
         $this->copy_env();
-        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
-
         $this->updateEnv([
             'APP_ENV'          => 'staging',
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'cos',
         ]);
+
+        $this->info('更新db cloud 等配置...');
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
+
     }
 
     public function prod()
     {
+        $this->info('更新env... 环境 prod');
         $this->copy_env();
-        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
-
-        //fix env config for prod
         $this->updateEnv([
             'APP_ENV'          => 'prod',
             'APP_DEBUG'        => 'false',
             'FILESYSTEM_CLOUD' => 'cos',
         ]);
+        $this->info('更新db cloud 等配置...');
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
     }
 
     public function updateWebConfig($db_host = null, $db_database = null, $db_port = null)
     {
+        $this->info("更新配置 db_host=$db_host db_database=$db_database db_port=$db_port");
+
         $data = @file_get_contents('/etc/webconfig.json');
         if ($data) {
             $webconfig  = json_decode($data);
