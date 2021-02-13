@@ -121,7 +121,7 @@ class EnvRefresh extends Command
             //线上默认数据库host $webconfig->db_host
             if (isset($webconfig->db_host)) {
                 if (\is_prod_env()) {
-                    if (empty($db_host) || $webconfig->db_host == $db_host) {
+                    if ($webconfig->db_host == $db_host) {
                         $db_changes = [
                             'DB_PASSWORD' => $webconfig->db_passwd, //线上默认数据库 pass
                         ];
