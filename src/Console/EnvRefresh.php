@@ -130,9 +130,9 @@ class EnvRefresh extends Command
             if (isset($webconfig->db_host)) {
                 if (\is_prod_env()) {
                     if ($webconfig->db_host == $db_host) {
-                        $db_changes = [
+                        $db_changes = array_merge($db_changes, [
                             'DB_PASSWORD' => $webconfig->db_passwd, //线上默认数据库 pass
-                        ];
+                        ]);
                     }
                 }
             }
@@ -142,10 +142,10 @@ class EnvRefresh extends Command
                 if (is_array($webconfig->databases)) {
                     foreach ($webconfig->databases as $database) {
                         if ($database->db_host == $db_host) {
-                            $db_changes = [
+                            $db_changes = array_merge($db_changes, [
                                 'DB_USERNAME' => $database->db_user,
                                 'DB_PASSWORD' => $database->db_passwd,
-                            ];
+                            ]);
                         }
                     }
                     $this->info("updating env file with $db_host settings ...");
