@@ -50,7 +50,11 @@ class EnvRefresh extends Command
     public function local()
     {
         $this->info('refreshing local env ...');
-        file_put_contents(base_path('.env'), file_get_contents(base_path('.env.local')));
+        $env_dev = file_get_contents(base_path('.env.local'));
+        if (blank($env_dev)) {
+            $env_dev = file_get_contents(base_path('.env.prod'));
+        }
+        file_put_contents(base_path('.env'), $env_dev);
 
         $this->updateWebConfig();
 
@@ -151,9 +155,9 @@ class EnvRefresh extends Command
 
             //cos id key
             $cos_changes = [];
-            if (is_array($webconfig->coses)) {
+            if (isset($webconfig->coses) && is_array($webconfig->coses)) {
                 foreach ($webconfig->coses as $cos) {
-                    if ($cos->bucket == env('APP_NAME')) {
+                    if (env('APP_NAME') == $cos->bucket) {
                         $cos_changes = [
                             'COS_APP_ID'     => $cos->appid,
                             'COS_REGION'     => $cos->region,
