@@ -15,7 +15,7 @@ class EnvRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'env:refresh {--db_host=localhost} {--db_port=3306} {--db_database=} {--env= : 环境，默认local,可选prod, develop, staging}';
+    protected $signature = 'env:refresh {--db_host=localhost} {--db_database=} {--db_port=3306} {--env= : 环境，默认prod,可选local|develop|staging}';
 
     /**
      * The console command description.
@@ -44,101 +44,92 @@ class EnvRefresh extends Command
         if ($env = $this->option('env')) {
             return $this->$env();
         }
-        return $this->local();
+        return $this->prod();
     }
 
-    public function local()
+    public function copy_env()
     {
-        $this->info('refreshing local env ...');
+        $this->info('copy .env ...');
         $env_dev = file_get_contents(base_path('.env.local'));
         if (blank($env_dev)) {
             $env_dev = file_get_contents(base_path('.env.prod'));
         }
         file_put_contents(base_path('.env'), $env_dev);
+    }
 
+    public function local()
+    {
+        $this->copy_env();
         $this->updateWebConfig();
 
         $this->updateEnv([
             'APP_ENV'          => 'local',
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
-            'DB_HOST'          => 'localhost',
-            'DB_PORT'          => $this->option('db_port'),
-            'DB_DATABASE'      => env('APP_NAME'),
         ]);
 
     }
 
     public function develop()
     {
-        $this->info('refreshing develop env ...');
-        file_put_contents(base_path('.env'), file_get_contents(base_path('.env.local')));
-        $db_host = $this->option('db_host');
-        $this->updateWebConfig($db_host);
+        $this->copy_env();
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
 
         $this->updateEnv([
             'APP_ENV'          => 'develop',
             'APP_DEBUG'        => 'true',
             'FILESYSTEM_CLOUD' => 'public',
-            'LOCAL_APP_URL'    => 'http://develop.' . env('APP_NAME') . '.com',
-            'DB_HOST'          => $db_host,
-            'DB_PORT'          => $this->option('db_port'),
-            'DB_DATABASE'      => $this->option('db_database'),
         ]);
     }
 
     public function staging()
     {
-        $this->info('refreshing staging env ...');
-        file_put_contents(base_path('.env'), file_get_contents(base_path('.env.local')));
-        $db_host = $this->option('db_host');
-        $this->updateWebConfig($db_host);
+        $this->copy_env();
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
 
         $this->updateEnv([
             'APP_ENV'          => 'staging',
             'APP_DEBUG'        => 'true',
-            'FILESYSTEM_CLOUD' => 'public',
-            'DB_HOST'          => $db_host,
-            'DB_PORT'          => $this->option('db_port'),
-            'DB_DATABASE'      => $this->option('db_database'),
+            'FILESYSTEM_CLOUD' => 'cos',
         ]);
     }
 
     public function prod()
     {
-        file_put_contents(base_path('.env'), file_get_contents(base_path('.env.local')));
-        $db_host = $this->option('db_host');
-        $this->updateWebConfig($db_host);
+        $this->copy_env();
+        $this->updateWebConfig($this->option('db_host'), $this->option('db_database'), $this->option('db_port'));
 
         //fix env config for prod
         $this->updateEnv([
             'APP_ENV'          => 'prod',
             'APP_DEBUG'        => 'false',
-            'DB_HOST'          => $db_host,
-            'DB_PORT'          => $this->option('db_port'),
-            'FILESYSTEM_CLOUD' => 'cosv5',
-            'DB_DATABASE'      => $this->option('db_database'),
+            'FILESYSTEM_CLOUD' => 'cos',
         ]);
     }
 
-    public function updateWebConfig($db_host = null)
+    public function updateWebConfig($db_host = null, $db_database = null, $db_port = null)
     {
         $data = @file_get_contents('/etc/webconfig.json');
         if ($data) {
             $webconfig  = json_decode($data);
-            $db_changes = [];
+            $db_changes = [
+                'DB_HOST'     => $db_host ?? 'localhost',
+                'DB_DATABASE' => $db_database ?? env('APP_NAME'),
+                'DB_PORT'     => $db_port ?? '3306',
+            ];
+
+            //线上默认数据库host $webconfig->db_host
             if (isset($webconfig->db_host)) {
-                //支持线上服务器使用默认本地数据库的情况
                 if (\is_prod_env()) {
                     if (empty($db_host) || $webconfig->db_host == $db_host) {
                         $db_changes = [
-                            'DB_PASSWORD' => $webconfig->db_passwd,
+                            'DB_PASSWORD' => $webconfig->db_passwd, //线上默认数据库 pass
                         ];
                     }
                 }
             }
 
-            // db
+            // db 线上不同数据库服务器 pass
             if ($db_host) {
                 if (is_array($webconfig->databases)) {
                     foreach ($webconfig->databases as $database) {
