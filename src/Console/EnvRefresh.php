@@ -172,13 +172,13 @@ class EnvRefresh extends Command
 
             //mail sms vod ...
             $changes = array_merge($cos_changes, $db_changes, [
-                'MAIL_HOST'                    => $webconfig->mail_host,
-                'MAIL_USERNAME'                => $webconfig->mail_username,
-                'MAIL_PASSWORD'                => $webconfig->mail_password,
-                'QCLOUD_SMS_ACCESS_KEY_ID'     => $webconfig->qcloud_sms_key_id,
-                'QCLOUD_SMS_ACCESS_KEY_SECRET' => $webconfig->qcloud_sms_key_secret,
-                'VOD_SECRET_ID'                => $webconfig->vod_secret_id,
-                'VOD_SECRET_KEY'               => $webconfig->vod_secret_key,
+                'MAIL_HOST'                    => $webconfig->mail_host ?? '',
+                'MAIL_USERNAME'                => $webconfig->mail_username ?? '',
+                'MAIL_PASSWORD'                => $webconfig->mail_password ?? '',
+                'QCLOUD_SMS_ACCESS_KEY_ID'     => $webconfig->qcloud_sms_key_id ?? '',
+                'QCLOUD_SMS_ACCESS_KEY_SECRET' => $webconfig->qcloud_sms_key_secret ?? '',
+                'VOD_SECRET_ID'                => $webconfig->vod_secret_id ?? '',
+                'VOD_SECRET_KEY'               => $webconfig->vod_secret_key ?? '',
             ]);
 
             $this->updateEnv($changes);
