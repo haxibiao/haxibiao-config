@@ -20,7 +20,7 @@ function adIsOpened()
         $config->state = $config->isOpen($userVersion) == 'on' ? AppConfig::STATUS_ON : AppConfig::STATUS_OFF;
 
     }
-    if ($config && $config->state === AppConfig::STATUS_OFF) {
+    if ($config && AppConfig::STATUS_OFF === $config->state) {
         return false;
     } else {
         return true;
@@ -55,7 +55,7 @@ function douyinOpen()
     $config = Config::where([
         'name' => 'douyin',
     ])->first();
-    if ($config && $config->value === Config::CONFIG_OFF) {
+    if ($config && Config::CONFIG_OFF === $config->value) {
         return false;
     } else {
         return true;
@@ -76,7 +76,7 @@ function isRecording()
         // if ($config === null) {
         //     return true;
         // }
-        if ($config && $config->state === \App\AppConfig::STATUS_ON) {
+        if ($config && \App\AppConfig::STATUS_ON === $config->state) {
             return true;
         }
     }
@@ -85,12 +85,30 @@ function isRecording()
 
 function touch_logo()
 {
-    return str_replace('.small.', '.touch.', small_logo());
+    $logo = str_replace('.small.', '.touch.', small_logo());
+    if (file_exists(public_path($logo))) {
+        return $logo;
+    }
+    return small_logo();
 }
 
+/**
+ * 网站默认logo
+ */
 function web_logo()
 {
-    return str_replace('.small.', '.web.', small_logo());
+    //兼容默认logo
+    $logo_path = '/logo/' . get_domain() . '.png';
+    if (file_exists(public_path($logo_path))) {
+        return url($logo_path);
+    }
+    //有裁剪的情况
+    $logo_path = '/logo/' . get_domain() . '.web.png';
+    if (file_exists(public_path($logo_path))) {
+        return url($logo_path);
+    }
+    //breeze默认logo
+    return url("/vendor/breeze/images/logo/default.small.png");
 }
 
 /**
@@ -98,7 +116,11 @@ function web_logo()
  */
 function text_logo()
 {
-    return str_replace('.small.', '.text.', small_logo());
+    $logo = str_replace('.small.', '.text.', small_logo());
+    if (file_exists(public_path($logo))) {
+        return $logo;
+    }
+    return small_logo();
 }
 
 /**
@@ -106,12 +128,11 @@ function text_logo()
  */
 function small_logo()
 {
-    $logo_path = '/logo/' . get_domain() . '.small.png';
-    if (file_exists(public_path('/logo/' . get_domain() . '.small.png'))) {
-        return url($logo_path);
+    $logo = str_replace('.web.', '.text.', web_logo());
+    if (file_exists(public_path($logo))) {
+        return $logo;
     }
-    //breeze默认logo
-    return url("/vendor/breeze/images/logo/default.small.png");
+    return web_logo();
 }
 
 /**
